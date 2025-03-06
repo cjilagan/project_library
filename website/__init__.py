@@ -19,9 +19,7 @@ def create_website():
     app.config["JWT_SECRET_KEY"] = 'aobwduiao'
   
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = (
-          f"mysql+pymysql://root:%40Anday2108@localhost:3306/attendance_db?charset=utf8"
-    )
+    app.config["SQLALCHEMY_DATABASE_URI"] = ('mysql://root:cjilagansql@localhost/users')
      # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') For deployment
 
 
