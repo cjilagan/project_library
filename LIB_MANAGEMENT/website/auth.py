@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, flash, request, url_for, session, jsonify
 from werkzeug.security import check_password_hash
-from website.models import Admin,Professor, Student,Section
+from website.models import Admin, Student
 from .extensions import db, bcrypt
 import re
 import pymysql
