@@ -1,14 +1,14 @@
-from flask import Blueprint, render_template, session, redirect, url_for, flash
+from flask import Blueprint, render_template
+from .decorators import member_required
 
+views = Blueprint('views', __name__)
 
-views = Blueprint('views', __name__)  # ✅ Ensure this matches in url_for()
+@views.route('/member/homepage')
+@member_required
+def member_homepage():
+    return render_template('member_home.html')
 
-
-@views.route('/admin_homepage', methods=['GET', 'POST'])
+@views.route('/admin/homepage')
+@admin_required
 def admin_homepage():
-    if 'user_id' not in session:
-        flash("Please log in first.", "warning")
-        return redirect(url_for('auth.login'))  
-
-
-    return render_template('admin_homepage.html')
+    return render_template('admin_home.html')
