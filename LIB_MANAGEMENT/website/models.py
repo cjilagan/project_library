@@ -22,6 +22,16 @@ class User(db.Model):
 
     def generate_token(self):
         return create_access_token(identity={"id": self.id, "role": self.role})
+    
+class Admin(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    admin_name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)  # Store hashed passwords
+    phone_number = db.Column(db.String(15), unique=True, nullable=False)
+
+    def __repr__(self):
+        return f"<Admin {self.admin_name}>"
 
 # Books Table
 class Book(db.Model):

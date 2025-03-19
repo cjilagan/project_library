@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, redirect, flash, request, url_for, session, jsonify
 from werkzeug.security import check_password_hash
-from website.models import Admin, Student
+from website.models import Admin, User
 from .extensions import db, bcrypt
-import pymysql
+
 
 auth = Blueprint('auth', __name__)
 
@@ -46,11 +46,9 @@ def signup():
         email = request.form.get('email', '').strip()
         password = request.form.get('password', '').strip()
         phone_number = request.form.get('phone_number', '').strip()
-        school_name = request.form.get('school_name', '').strip()
-        department_name = request.form.get('department_name', '').strip()
 
         
-        print(f"Received: {admin_name}, {email}, {password}, {phone_number}, {school_name}, {department_name}")
+        print(f"Received: {admin_name}, {email}, {password}, {phone_number}")
 
         if not email or not password:
             flash("Email and password are required.", "danger")
@@ -71,8 +69,6 @@ def signup():
             email=email,
             password=hashed_password,
             phone_number=phone_number,
-            school_name=school_name,
-            department_name=department_name
         )
 
         try:

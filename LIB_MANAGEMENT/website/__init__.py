@@ -1,7 +1,6 @@
 from flask import Flask
 from .extensions import db, migrate, login_manager, ip_address, save_data
 from flask_migrate import Migrate
-import os
 import pymysql
 from sqlalchemy import text  
 
