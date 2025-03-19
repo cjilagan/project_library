@@ -2,8 +2,6 @@ from .extensions import db, bcrypt
 from datetime import datetime, timedelta
 from flask_jwt_extended import create_access_token
 
-db = SQLAlchemy()
-bcrypt = Bcrypt()
 
 # User Roles
 class User(db.Model):

@@ -6,15 +6,6 @@ import pymysql
 
 auth = Blueprint('auth', __name__)
 
-# ✅ Function to establish a MySQL database connection
-def get_db_connection():
-    return pymysql.connect(
-        host="localhost",
-        user="root",  # Change if needed
-        password="2108",  # Change if needed
-        database="libmanagement"
-    )
-
 # ✅ Admin Login Route
 @auth.route('/', methods=['GET', 'POST'])
 def login():

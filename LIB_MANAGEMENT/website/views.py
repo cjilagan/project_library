@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from .decorators import member_required
+from .decorators import member_required, admin_required
 
 views = Blueprint('views', __name__)
 

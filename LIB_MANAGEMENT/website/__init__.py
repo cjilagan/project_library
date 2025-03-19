@@ -10,8 +10,7 @@ pymysql.install_as_MySQLdb()
 def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = 'aobwduiao'  
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root@localhost/library_db"
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///library.db'
 
 
     # ✅ Initialize database and migration
