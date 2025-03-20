@@ -30,10 +30,6 @@ def login():
 
     return render_template('index.html')
 
-# ✅ Admin Homepage Route
-@auth.route('/homepage', methods=['GET'])
-def home():
-    return render_template('member_home.html')
 
 @auth.route('/member/signup', methods=['GET', 'POST'])
 def member_signup():
