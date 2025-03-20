@@ -70,7 +70,7 @@ def member_signup():
     return render_template('member_signup.html')
 
 @auth.route('/admin/signup', methods=['GET', 'POST'])
-def signup():
+def admin_signup():
     email = ""
     admin_name = ""
 
