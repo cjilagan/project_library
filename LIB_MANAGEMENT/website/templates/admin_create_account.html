@@ -1,41 +1,52 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="admin_signup">
-    <h2 class="text-center">Admin Signup</h2>
+<div class="container mt-5">
+    <div class="admin_signup">
+        <h2 class="text-center">Admin Signup</h2>
 
-    <form method="POST">
-        <div class="admin_name">
-            <label for="admin_name" class="form-label">Admin Name</label>
-            <input type="text" class="form-control" id="admin_name" name="admin_name" value="{{ admin_name }}" required>
+        <!-- ✅ Display Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <div class="mb-3">
+                <label for="admin_name" class="form-label">Admin Name</label>
+                <input type="text" class="form-control" id="admin_name" name="admin_name" value="{{ admin_name }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ admin_email }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="phone_number" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ admin_phonenumber }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="admin_secret_key" class="form-label">Admin Secret Key</label>
+                <input type="password" class="form-control" id="admin_secret_key" name="admin_secret_key" required>
+                <small class="text-muted">Enter the secret key provided by the system.</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Create Admin Account</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="{{ url_for('auth.login') }}">Already have an account? Login here</a>
         </div>
-
-        <div class="admin_email">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" value="{{ email }}" required>
-        </div>
-
-        <div class="admin_pass">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-
-        <div class="admin_phonenumber">
-            <label for="phone_number" class="form-label">Phone Number</label>
-            <input type="text" class="form-control" id="phone_number" name="phone_number">
-        </div>
-
-        <div class="adminsecretkey">
-            <label for="admin_secret_key" class="form-label">Admin Secret Key</label>
-            <input type="password" class="form-control" id="admin_secret_key" name="admin_secret_key" required>
-            <small class="text-muted">Enter the secret key provided by the system.</small>
-        </div>
-
-        <button type="submit" class="btn btn-primary w-100">Create Admin Account</button>
-    </form>
-
-    <div class="linktoindex">
-        <a href="{{ url_for('auth.login') }}">Already have an account? Login here</a>
     </div>
 </div>
 {% endblock %}

@@ -2,7 +2,8 @@ from flask import Blueprint, render_template, redirect, flash, request, url_for,
 from werkzeug.security import check_password_hash
 from website.models import Admin, User
 from .extensions import db, bcrypt
-
+from dotenv import load_dotenv
+import os
 
 auth = Blueprint('auth', __name__)
 
@@ -71,40 +72,41 @@ def member_signup():
 
 @auth.route('/admin/signup', methods=['GET', 'POST'])
 def admin_signup():
-    email = ""
+    admin_email = ""
     admin_name = ""
 
     if request.method == 'POST':
         admin_name = request.form.get('admin_name', '').strip()
-        email = request.form.get('email', '').strip()
-        password = request.form.get('password', '').strip()
-        phone_number = request.form.get('phone_number', '').strip()
-        admin_secret_key = request.form.get('admin_secret_key', '').strip()  # ✅ New secret key field
+        admin_email = request.form.get('email', '').strip()
+        admin_pass = request.form.get('password', '').strip()
+        admin_phonenumber = request.form.get('phone_number', '').strip()
+        admin_secret_key = request.form.get('admin_secret_key', '').strip()  # ✅ Admin verification key
 
-        print(f"Received: {admin_name}, {email}, {password}, {phone_number}, {admin_secret_key}")
+        print(f"Received: {admin_name}, {admin_email}, {admin_pass}, {admin_phonenumber}, {admin_secret_key}")
 
         # ✅ Check the secret key before proceeding
         VALID_ADMIN_KEY = "LIBRARY_ADMIN_2025"  # Change this to something secure
         if admin_secret_key != VALID_ADMIN_KEY:
             flash("Invalid admin registration key.", "danger")
-            return render_template('admin_create_account.html', email=email, admin_name=admin_name)
-
-        if not email or not password:
+            return render_template('admin_create_account.html', admin_email=admin_email, admin_name=admin_name)
+            print("Current Admin Secret Key:", os.getenv("ADMIN_SECRET_KEY"))
+            
+        if not admin_email or not admin_pass:
             flash("Email and password are required.", "danger")
-            return render_template('admin_create_account.html', email=email, admin_name=admin_name)
+            return render_template('admin_create_account.html', admin_email=admin_email, admin_name=admin_name)
 
-        existing_user = Admin.query.filter_by(email=email).first()
-        if existing_user:
+        existing_admin = Admin.query.filter_by(admin_email=admin_email).first()
+        if existing_admin:
             flash("Email is already registered.", "danger")
-            return render_template('admin_create_account.html', email=email, admin_name=admin_name)
+            return render_template('admin_create_account.html', admin_email=admin_email, admin_name=admin_name)
 
-        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        hashed_password = bcrypt.generate_password_hash(admin_pass).decode('utf-8')
 
         new_admin = Admin(
             admin_name=admin_name,
-            email=email,
-            password=hashed_password,
-            phone_number=phone_number,
+            admin_email=admin_email,
+            admin_pass=hashed_password,
+            admin_phonenumber=admin_phonenumber,
         )
 
         try:
@@ -117,6 +119,7 @@ def admin_signup():
             flash(f"Database error: {str(e)}", "danger")
 
     return render_template('admin_create_account.html')
+
 
 
 @auth.route('/logout')
