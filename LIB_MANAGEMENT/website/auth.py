@@ -1,11 +1,15 @@
+import os
 from flask import Blueprint, render_template, redirect, flash, request, url_for, session, jsonify
 from werkzeug.security import check_password_hash
 from website.models import Admin, User
 from .extensions import db, bcrypt
 from dotenv import load_dotenv
-import os
+
+load_dotenv()
 
 auth = Blueprint('auth', __name__)
+
+VALID_ADMIN_KEY = os.getenv("ADMIN_SECRET_KEY")
 
 # ✅ Admin Login Route
 @auth.route('/', methods=['GET', 'POST'])
@@ -80,16 +84,17 @@ def admin_signup():
         admin_email = request.form.get('email', '').strip()
         admin_pass = request.form.get('password', '').strip()
         admin_phonenumber = request.form.get('phone_number', '').strip()
-        admin_secret_key = request.form.get('admin_secret_key', '').strip()  # ✅ Admin verification key
+        admin_secret_key = request.form.get('admin_secret_key', '').strip()  
 
         print(f"Received: {admin_name}, {admin_email}, {admin_pass}, {admin_phonenumber}, {admin_secret_key}")
 
-        # ✅ Check the secret key before proceeding
-        VALID_ADMIN_KEY = "LIBRARY_ADMIN_2025"  # Change this to something secure
+        if not VALID_ADMIN_KEY:
+            flash("Admin secret key is missing from the server configuration.", "danger")
+            return render_template('admin_create_account.html', admin_email=admin_email, admin_name=admin_name)
+
         if admin_secret_key != VALID_ADMIN_KEY:
             flash("Invalid admin registration key.", "danger")
             return render_template('admin_create_account.html', admin_email=admin_email, admin_name=admin_name)
-            print("Current Admin Secret Key:", os.getenv("ADMIN_SECRET_KEY"))
             
         if not admin_email or not admin_pass:
             flash("Email and password are required.", "danger")
@@ -119,8 +124,6 @@ def admin_signup():
             flash(f"Database error: {str(e)}", "danger")
 
     return render_template('admin_create_account.html')
-
-
 
 @auth.route('/logout')
 def logout():

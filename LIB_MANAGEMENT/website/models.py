@@ -13,6 +13,7 @@ class User(db.Model):
     role = db.Column(db.String(10), nullable=False, default="member")  # "admin" or "member"
 
     def __init__(self, username, email, password, role="member"):
+        self.name = name
         self.username = username
         self.email = email
         self.password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
@@ -25,11 +26,12 @@ class User(db.Model):
         return create_access_token(identity={"id": self.id, "role": self.role})
     
 class Admin(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     admin_name = db.Column(db.String(100), nullable=False)
     admin_email = db.Column(db.String(120), unique=True, nullable=False)
     admin_pass = db.Column(db.String(255), nullable=False)  # Store hashed passwords
     admin_phonenumber = db.Column(db.String(15), unique=True, nullable=False)
+    role = db.Column(db.String(10), nullable=False, default="admin")
 
     def __repr__(self):
         return f"<Admin {self.admin_name}>"
