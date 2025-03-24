@@ -79,24 +79,27 @@ def admin_signup():
         email = request.form.get('email', '').strip()
         password = request.form.get('password', '').strip()
         phone_number = request.form.get('phone_number', '').strip()
+        admin_secret_key = request.form.get('admin_secret_key', '').strip()  # ✅ New secret key field
 
-        
-        print(f"Received: {admin_name}, {email}, {password}, {phone_number}")
+        print(f"Received: {admin_name}, {email}, {password}, {phone_number}, {admin_secret_key}")
+
+        # ✅ Check the secret key before proceeding
+        VALID_ADMIN_KEY = "LIBRARY_ADMIN_2025"  # Change this to something secure
+        if admin_secret_key != VALID_ADMIN_KEY:
+            flash("Invalid admin registration key.", "danger")
+            return render_template('admin_create_account.html', email=email, admin_name=admin_name)
 
         if not email or not password:
             flash("Email and password are required.", "danger")
             return render_template('admin_create_account.html', email=email, admin_name=admin_name)
 
-        
         existing_user = Admin.query.filter_by(email=email).first()
         if existing_user:
             flash("Email is already registered.", "danger")
             return render_template('admin_create_account.html', email=email, admin_name=admin_name)
 
-       
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
-        
         new_admin = Admin(
             admin_name=admin_name,
             email=email,
@@ -107,13 +110,14 @@ def admin_signup():
         try:
             db.session.add(new_admin)
             db.session.commit()
-            flash("Account created successfully!", "success")
+            flash("Admin account created successfully!", "success")
             return redirect(url_for('auth.login'))  # Redirect to login page
         except Exception as e:
             db.session.rollback()
             flash(f"Database error: {str(e)}", "danger")
 
     return render_template('admin_create_account.html')
+
 
 @auth.route('/logout')
 def logout():

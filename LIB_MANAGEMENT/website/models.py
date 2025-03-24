@@ -27,9 +27,9 @@ class User(db.Model):
 class Admin(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     admin_name = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(255), nullable=False)  # Store hashed passwords
-    phone_number = db.Column(db.String(15), unique=True, nullable=False)
+    admin_email = db.Column(db.String(120), unique=True, nullable=False)
+    admin_pass = db.Column(db.String(255), nullable=False)  # Store hashed passwords
+    admin_phonenumber = db.Column(db.String(15), unique=True, nullable=False)
 
     def __repr__(self):
         return f"<Admin {self.admin_name}>"
