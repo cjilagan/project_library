@@ -6,11 +6,11 @@
         <h1>Library Hub</h1>
         <div class="right-container">
             <div class="login-box">
-                <form method="POST" action="{{ url_for('auth.login') }}">
+                <form method="POST" action="{{ url_for('auth.login') }}" method="POST">
                     <div>
                         <input type="text" name="email" placeholder="Email or Username" required>
                         <input type="password" name="password" placeholder="Password" required>
-                        <input type="submit" value="Login" class="submit-btn">
+                        <button type="submit">Login</button>
                     </div>
                 </form>
             </div>

@@ -14,9 +14,11 @@ VALID_ADMIN_KEY = os.getenv("ADMIN_SECRET_KEY")
 # ✅ Admin Login Route
 @auth.route('/', methods=['GET', 'POST'])
 def login():
+    print("Login route accessed!")
     if request.method == 'POST':
         email = request.form.get('email', '').strip()
         password = request.form.get('password', '')
+        print("POST request received!")
 
         existing_user = User.query.filter_by(email=email).first()
 
@@ -24,6 +26,10 @@ def login():
             session.permanent = True  
             session['user_id'] = existing_user.id  
             session['role'] = existing_user.role  # ✅ Store role in session
+
+            # 🔍 Debugging print statement to check role
+            print(f"User Role: {existing_user.role}")  
+
             flash("Login successful!", "success")
 
             if existing_user.role == "admin":
