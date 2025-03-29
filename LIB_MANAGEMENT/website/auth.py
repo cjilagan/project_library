@@ -1,7 +1,7 @@
 import os
 from flask import Blueprint, render_template, redirect, flash, request, url_for, session, jsonify
 from werkzeug.security import check_password_hash
-from website.models import Admin, User
+from .models import Admin, User
 from .extensions import db, bcrypt
 from dotenv import load_dotenv
 
@@ -14,32 +14,43 @@ VALID_ADMIN_KEY = os.getenv("ADMIN_SECRET_KEY")
 # ✅ Admin Login Route
 @auth.route('/', methods=['GET', 'POST'])
 def login():
-    print("Login route accessed!")
     if request.method == 'POST':
-        email = request.form.get('email', '').strip()
-        password = request.form.get('password', '')
-        print("POST request received!")
+        email = request.form.get('email')
+        password = request.form.get('password')
 
-        existing_user = User.query.filter_by(email=email).first()
-
+        existing_user = Admin.query.filter_by(admin_email = email).first()
+        
         if existing_user and check_password_hash(existing_user.password, password):
             session.permanent = True  
             session['user_id'] = existing_user.id  
             session['role'] = existing_user.role  # ✅ Store role in session
-
-            # 🔍 Debugging print statement to check role
-            print(f"User Role: {existing_user.role}")  
-
             flash("Login successful!", "success")
-
+            
             if existing_user.role == "admin":
                 return redirect(url_for('views.admin_homepage'))
             else:
                 return redirect(url_for('views.member_homepage'))  # Redirect members to a different page
-
+        
         flash('Invalid email or password.', 'danger')
 
     return render_template('index.html')
+
+@auth.route('/admin', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        existing_user = Admin.query.filter_by(admin_email = email).first()
+        print(existing_user)
+        if existing_user:
+            if check_password_hash(user.password, password):
+                flash('Logged in Successfully', category='success')
+                return redirect(url_for('views.admin_homepage'))
+            elif user:
+                flash('Incorrect Password or Invalid email, try again', category='error')
+            else:
+                flash('Email does not exists', category='error')
+    return render_template('admin_login.html')
 
 
 @auth.route('/member/signup', methods=['GET', 'POST'])
