@@ -20,6 +20,8 @@ def create_app():
     from .auth import auth  
     app.register_blueprint(auth)  
 
+    from .views import views
+    app.register_blueprint(views)
     # ✅ Test database connection
     with app.app_context():
         try:

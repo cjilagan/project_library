@@ -2,36 +2,37 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-    <div class="header">
-        <h1>Library Hub</h1>
-        <div class="right-container">
-            <div class="login-box">
-                <form method="POST" action="{{ url_for('auth.login') }}" method="POST">
-                    <div>
-                        <input type="text" name="email" placeholder="Email or Username" required>
-                        <input type="password" name="password" placeholder="Password" required>
-                        <button type="submit">Login</button>
-                    </div>
-                </form>
+<div class="header">
+    <h1>Library Hub</h1>
+    <div class="right-container">
+        <div class="login-box">
+            <div>
+                <a href="{{ url_for('auth.admin_login') }}" class="btn-link">
+                    <button>Login - Admin</button>
+                </a>
             </div>
+            <div>
+                <a href="{{ url_for('auth.member_login') }}" class="btn-link">
+                    <button>Login - Member</button>
+                </a>
+            </div>
+        </div>
 
-            <div class="new-user-container">
-                <span>New member? <a href="{{ url_for('auth.member_signup') }}" class="signup-text">Sign up here</a></span>
-                <span class="divider"></span>
-                <span>New admin? <a href="{{ url_for('auth.admin_signup') }}" class="signup-text">Create Admin Account</a></span>
-                <span class="divider"></span>
-                <a href="#">Forgot Password</a>
-            </div>
+        <div class="new-user-container">
+            <span>New member? <a href="{{ url_for('auth.member_signup') }}" class="signup-text">Sign up here</a></span>
+            <span class="divider"></span>
+            <span>New admin? <a href="{{ url_for('auth.admin_signup') }}" class="signup-text">Create Admin Account</a></span>
+            <span class="divider"></span>
+            <a href="#">Forgot Password</a>
+        </div>
 
-            <div class="main">
-                <div class="divider"></div>
-                <h1>Library Hub</h1>
-                <p>Library is bla bla bla with eme eme rut saging saging mangga mangga. Ahas sa gubat shh shhs shhh HAHAHA...</p>
-                <p>dsvhfjaghganahvghuvg uhdvsjknhbjgkhh hvshuvsfdhu</p>
-                <p>hjdcsnkusdzfujkn gbuyuvwgvbjkFSVGjkb yveshbgesafhjbgb</p>
-                
-            </div>
-        
+        <div class="main">
+            <div class="divider"></div>
+            <h1>Library Hub</h1>
+            <p>Library is bla bla bla with eme eme rut saging saging mangga mangga. Ahas sa gubat shh shhs shhh HAHAHA...</p>
+            <p>dsvhfjaghganahvghuvg uhdvsjknhbjgkhh hvshuvsfdhu</p>
+            <p>hjdcsnkusdzfujkn gbuyuvwgvbjkFSVGjkb yveshbgesafhjbgb</p>
         </div>
     </div>
+</div>
 {% endblock %}

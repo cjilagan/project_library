@@ -1,8 +1,8 @@
 import os
 from flask import Blueprint, render_template, redirect, flash, request, url_for, session, jsonify
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 from .models import Admin, User
-from .extensions import db, bcrypt
+from .extensions import db
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -14,25 +14,6 @@ VALID_ADMIN_KEY = os.getenv("ADMIN_SECRET_KEY")
 # ✅ Admin Login Route
 @auth.route('/', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-
-        existing_user = Admin.query.filter_by(admin_email = email).first()
-        
-        if existing_user and check_password_hash(existing_user.password, password):
-            session.permanent = True  
-            session['user_id'] = existing_user.id  
-            session['role'] = existing_user.role  # ✅ Store role in session
-            flash("Login successful!", "success")
-            
-            if existing_user.role == "admin":
-                return redirect(url_for('views.admin_homepage'))
-            else:
-                return redirect(url_for('views.member_homepage'))  # Redirect members to a different page
-        
-        flash('Invalid email or password.', 'danger')
-
     return render_template('index.html')
 
 @auth.route('/admin', methods=['GET', 'POST'])
@@ -40,8 +21,26 @@ def admin_login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        existing_user = Admin.query.filter_by(admin_email = email).first()
+
+        existing_user = Admin.query.filter_by(admin_email=email).first()
         print(existing_user)
+
+        if existing_user:
+            if check_password_hash(existing_user.admin_pass, password):  
+                flash('Logged in Successfully', category='success')
+                return redirect('/admin/homepage')
+            else:
+                flash('Incorrect password', category='error')
+        else:
+            flash('Email does not exist', category='error')
+    return render_template('admin_login.html')
+
+@auth.route('/member', methods=['GET', 'POST'])
+def member_login():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        existing_user = Admin.query.filter_by(admin_email = email).first()
         if existing_user:
             if check_password_hash(user.password, password):
                 flash('Logged in Successfully', category='success')
@@ -50,7 +49,7 @@ def admin_login():
                 flash('Incorrect Password or Invalid email, try again', category='error')
             else:
                 flash('Email does not exists', category='error')
-    return render_template('admin_login.html')
+    return render_template('member_login.html')
 
 
 @auth.route('/member/signup', methods=['GET', 'POST'])
@@ -70,7 +69,7 @@ def member_signup():
             flash("Email is already registered.", "danger")
             return render_template('member_signup.html', name=name, email=email)
 
-        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        hashed_password = generate_password_hash(member_signup, method='pbkdf2:sha256')
 
         new_member = User(
             name=name,
@@ -122,7 +121,7 @@ def admin_signup():
             flash("Email is already registered.", "danger")
             return render_template('admin_create_account.html', admin_email=admin_email, admin_name=admin_name)
 
-        hashed_password = bcrypt.generate_password_hash(admin_pass).decode('utf-8')
+        hashed_password = generate_password_hash(admin_pass, method='pbkdf2:sha256')
 
         new_admin = Admin(
             admin_name=admin_name,

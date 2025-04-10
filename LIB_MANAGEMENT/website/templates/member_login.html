@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <h1>Member Login</h1>
+        <div class="member-container">
+            <div class="login-box">
+                <form method="POST" action="{{ url_for('auth.member_login') }}" method="POST">
+                    <div>
+                        <input type="text" name="email" placeholder="Email or Username" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <button type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
