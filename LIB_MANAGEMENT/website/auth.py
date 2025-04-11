@@ -69,14 +69,14 @@ def member_signup():
             flash("Email is already registered.", "danger")
             return render_template('member_signup.html', name=name, email=email)
 
-        hashed_password = generate_password_hash(member_signup, method='pbkdf2:sha256')
+        hashed_password = generate_password_hash(password)
 
         new_member = User(
             name=name,
             email=email,
             password=hashed_password,
             phone_number=phone_number,
-            role='member'  # Ensuring the role is set to 'member'
+            role='member'  
         )
 
         try:

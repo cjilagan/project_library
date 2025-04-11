@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container mt-5">
     <div class="admin_signup">
-        <h2 class="text-center">Admin Signup</h2>
+        <h2 class="text-center">Administrator Signup</h2>
 
         <!-- ✅ Display Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -45,7 +45,7 @@
         </form>
 
         <div class="text-center mt-3">
-            <a href="{{ url_for('auth.login') }}">Already have an account? Login here</a>
+            <p>Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a></p>
         </div>
     </div>
 </div>
