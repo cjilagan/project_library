@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 from flask_jwt_extended import create_access_token
 
 
-# User Roles
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -26,7 +25,7 @@ class Admin(db.Model):
     def __repr__(self):
         return f"<Admin {self.admin_name}>"
 
-# Books Table
+
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
@@ -40,7 +39,6 @@ class Book(db.Model):
         self.isbn = isbn
         self.available_copies = available_copies
 
-# Borrow Records Table
 class BorrowRecord(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

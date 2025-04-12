@@ -11,7 +11,7 @@ auth = Blueprint('auth', __name__)
 
 VALID_ADMIN_KEY = os.getenv("ADMIN_SECRET_KEY")
 
-# ✅ Admin Login Route
+
 @auth.route('/', methods=['GET', 'POST'])
 def login():
     return render_template('index.html')

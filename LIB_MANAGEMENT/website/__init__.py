@@ -12,17 +12,15 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///library.db'
 
 
-    # ✅ Initialize database and migration
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # ✅ Import blueprints inside the function to avoid circular imports
     from .auth import auth  
     app.register_blueprint(auth)  
 
     from .views import views
     app.register_blueprint(views)
-    # ✅ Test database connection
+
     with app.app_context():
         try:
             with db.engine.connect() as connection:
@@ -31,7 +29,7 @@ def create_app():
         except Exception as e:
             print(f"Database connection failed: {e}")
 
-    # ✅ Create tables if not exist
+
     create_database(app)
 
     return app  
