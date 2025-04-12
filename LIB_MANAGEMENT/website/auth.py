@@ -40,16 +40,18 @@ def member_login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        existing_user = User.query.filter_by(email = email).first()
-        if existing_user:
-            if check_password_hash(existing_user.password, password):
-                flash('Logged in Successfully', category='success')
-                return redirect(url_for('views.member_homepage'))
-            elif existing_user:
-                flash('Incorrect Password or Invalid email, try again', category='error')
-            else:
-                flash('Email does not exists', category='error')
+
+        user = User.query.filter_by(email=email, role='member').first()
+
+        if user and check_password_hash(user.password_hash, password):
+            flash('Logged in successfully!', category='success')
+            return redirect(url_for('views.member_homepage'))
+        else:
+            flash('Incorrect email or password, try again.', category='error')
+
     return render_template('member_login.html')
+
+
 
 
 @auth.route('/member/signup', methods=['GET', 'POST'])
