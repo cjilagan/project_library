@@ -12,13 +12,6 @@ class User(db.Model):
     password_hash = db.Column(db.String(255), nullable=False)
     role = db.Column(db.String(10), nullable=False, default="member")  # "admin" or "member"
 
-    def __init__(self, username, email, password, role="member"):
-        self.name = name
-        self.username = username
-        self.email = email
-        self.password_hash = generate_password_hash(member_signup, method='pbkdf2:sha256')
-        self.role = role
-
     def generate_token(self):
         return create_access_token(identity={"id": self.id, "role": self.role})
     

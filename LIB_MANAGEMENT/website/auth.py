@@ -40,12 +40,12 @@ def member_login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        existing_user = Admin.query.filter_by(admin_email = email).first()
+        existing_user = User.query.filter_by(email = email).first()
         if existing_user:
-            if check_password_hash(user.password, password):
+            if check_password_hash(existing_user.password, password):
                 flash('Logged in Successfully', category='success')
-                return redirect(url_for('views.admin_homepage'))
-            elif user:
+                return redirect(url_for('views.member_homepage'))
+            elif existing_user:
                 flash('Incorrect Password or Invalid email, try again', category='error')
             else:
                 flash('Email does not exists', category='error')
@@ -74,7 +74,7 @@ def member_signup():
         new_member = User(
             name=name,
             email=email,
-            password=hashed_password,
+            password_hash=hashed_password,
             phone_number=phone_number,
             role='member'  
         )
