@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container_mt-5">
     <div class="admin_signup">
         <h2 class="text-center">Administrator Signup</h2>
 
-        <!-- ✅ Display Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -38,8 +37,8 @@
             <div class="mb-3">
                 <label for="admin_secret_key" class="form-label">Admin Secret Key</label>
                 <input type="password" class="form-control" id="admin_secret_key" name="admin_secret_key" required>
-                <small class="text-muted">Enter the secret key provided by the system.</small>
             </div>
+            <small class="text-muted">Enter the secret key provided by the system.</small>
 
             <button type="submit" class="btn btn-primary w-100">Create Admin Account</button>
         </form>

@@ -23,3 +23,26 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundAttachment = "fixed";
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const passwordInput = document.getElementById('password');
+    const secretKeyInput = document.getElementById('admin_secret_key');
+
+    // Toggle password visibility
+    passwordInput.addEventListener('focus', function() {
+        this.type = 'text';
+    });
+
+    passwordInput.addEventListener('blur', function() {
+        this.type = 'password';
+    });
+
+    // Toggle secret key visibility
+    secretKeyInput.addEventListener('focus', function() {
+        this.type = 'text';
+    });
+
+    secretKeyInput.addEventListener('blur', function() {
+        this.type = 'password';
+    });
+});

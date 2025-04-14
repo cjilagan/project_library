@@ -3,9 +3,9 @@
 
 {% block content %}
 <div class="header1">
-    <h1>Administrator Login</h1>
     <div class="right-container1">
         <div class="login-box1">
+            <h1>Administrator Login</h1>
             <form method="POST" action="{{ url_for('auth.admin_login') }}" method="POST">
                 <div>
                     <input type="text" name="email" placeholder="Email or Username" required>
