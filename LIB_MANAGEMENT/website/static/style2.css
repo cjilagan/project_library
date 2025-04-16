@@ -4,7 +4,9 @@ body {
     background: url('https://i.pinimg.com/736x/01/13/f9/0113f94f11c47c63ce2221645121b863.jpg') repeat;
   }
   
-  .container {
+  .container1 {
+    position: relative;
+    top: 60px;
     max-width: 900px;
     margin: auto;
     padding: 20px;
