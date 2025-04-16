@@ -1,90 +1,71 @@
-{% extends "base.html" %}
-{% block title %}{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Library Management System</title>
+  <link rel="stylesheet" href="styles2.css" />
+  
 
-{% block content %}
-<style>
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-  </style>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body>
+  <div class="container">
+    <header>
+      <h1>Library Management System</h1>
+      <button class="logout">Logout</button>
+    </header>
 
-  <div class="bg-white shadow p-4 flex justify-between items-center">
-    <h1 class="text-xl font-semibold">Library Hub</h1>
-    <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</button>
-  </div>
+    <nav>
+      <button class="nav-btn">Books</button>
+      <button class="nav-btn active">Users</button>
+      <button class="nav-btn">Borrow Request</button>
+    </nav>
 
-  <div class="p-4">
-    <div class="flex space-x-4 mb-4">
-      <button onclick="switchTab('booksTab')" class="tab-btn bg-blue-500 text-white px-4 py-2 rounded">Books</button>
-      <button onclick="switchTab('usersTab')" class="tab-btn bg-blue-500 text-white px-4 py-2 rounded">Users</button>
-      <button onclick="switchTab('requestsTab')" class="tab-btn bg-blue-500 text-white px-4 py-2 rounded">Borrow Requests</button>
+    <div class="search-bar">
+      <input type="text" placeholder="Search Users..." />
     </div>
 
-    <div id="booksTab" class="tab-content active">
-      <input type="text" id="searchBooks" placeholder="Search books..." oninput="filterBooks()" class="w-full p-2 border mb-4 rounded" />
-      <table class="min-w-full bg-white rounded shadow">
-        <thead>
-          <tr>
-            <th class="py-2 px-4 border-b text-left">Title</th>
-            <th class="py-2 px-4 border-b text-left">Author</th>
-            <th class="py-2 px-4 border-b text-left">Actions</th>
-          </tr>
-        </thead>
-        <tbody id="bookTable">
-          <tr>
-            <td class="py-2 px-4 border-b editable" contenteditable="true">1984</td>
-            <td class="py-2 px-4 border-b editable" contenteditable="true">George Orwell</td>
-            <td class="py-2 px-4 border-b"><button onclick="saveChanges(this)" class="bg-blue-500 text-white px-3 py-1 rounded">Save</button></td>
-          </tr>
-        </tbody>
-      </table>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email Address</th>
+          <th>Phone Number</th>
+          <th>Manage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cj Ilagan</td>
+          <td>cjIlagan@gmail.com</td>
+          <td>09153820276</td>
+          <td>
+            <button class="edit-btn">Edit</button>
+            <button class="delete-btn">🗑️</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Ijah Howell</td>
+          <td>ijahijah26@gmail.com</td>
+          <td>09123876465</td>
+          <td>
+            <button class="edit-btn">Edit</button>
+            <button class="delete-btn">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="add-form">
+      <input type="text" placeholder="Enter book title..." />
+      <input type="text" placeholder="Enter author..." />
+      <button class="add-btn">Add</button>
     </div>
 
-    <div id="usersTab" class="tab-content">
-      <input type="text" id="searchUsers" placeholder="Search users..." oninput="filterUsers()" class="w-full p-2 border mb-4 rounded" />
-      <table class="min-w-full bg-white rounded shadow">
-        <thead>
-          <tr>
-            <th class="py-2 px-4 border-b text-left">Email</th>
-            <th class="py-2 px-4 border-b text-left">Role</th>
-            <th class="py-2 px-4 border-b text-left">Actions</th>
-          </tr>
-        </thead>
-        <tbody id="userTable">
-          <tr>
-            <td class="py-2 px-4 border-b editable" contenteditable="true">user@example.com</td>
-            <td class="py-2 px-4 border-b editable" contenteditable="true">member</td>
-            <td class="py-2 px-4 border-b"><button onclick="saveUser(this)" class="bg-blue-500 text-white px-3 py-1 rounded">Update</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div id="requestsTab" class="tab-content">
-      <table class="min-w-full bg-white rounded shadow">
-        <thead>
-          <tr>
-            <th class="py-2 px-4 border-b text-left">User</th>
-            <th class="py-2 px-4 border-b text-left">Book</th>
-            <th class="py-2 px-4 border-b text-left">Status</th>
-            <th class="py-2 px-4 border-b text-left">Actions</th>
-          </tr>
-        </thead>
-        <tbody id="requestTable">
-          <tr>
-            <td class="py-2 px-4 border-b">john@example.com</td>
-            <td class="py-2 px-4 border-b">1984</td>
-            <td class="py-2 px-4 border-b">Pending</td>
-            <td class="py-2 px-4 border-b space-x-2">
-              <button class="bg-green-500 text-white px-3 py-1 rounded" onclick="approveRequest(this)">Approve</button>
-              <button class="bg-red-500 text-white px-3 py-1 rounded" onclick="denyRequest(this)">Deny</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="manage-section">
+      <button class="manage-btn">Manage</button>
     </div>
   </div>
+</body>
+</html>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-{% endblock %}
