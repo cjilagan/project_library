@@ -136,7 +136,7 @@ def admin_signup():
             db.session.add(new_admin)
             db.session.commit()
             flash("Admin account created successfully!", "success")
-            return redirect(url_for('auth.login'))  # Redirect to login page
+            return redirect(url_for('auth.login')) 
         except Exception as e:
             db.session.rollback()
             flash(f"Database error: {str(e)}", "danger")

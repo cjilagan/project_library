@@ -100,3 +100,11 @@ function switchTab(id) {
       const book = row.children[1].textContent.trim();
       console.log("Denied request:", user, book);
       row.children[2].textContent = "Denied";}
+
+  setTimeout(() => {
+    const flashMessages = document.querySelectorAll('.flash-message');
+    flashMessages.forEach((message) => {
+        message.style.opacity = '0';
+        setTimeout(() => message.remove(), 500); 
+    });
+}, 5000);
