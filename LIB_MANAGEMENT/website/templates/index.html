@@ -11,11 +11,14 @@
                     <button>Login - Admin</button>
                 </a>
             </div>
+        <div class="login_boxindex">
             <div>
                 <a href="{{ url_for('auth.member_login') }}" class="btn-link">
                     <button>Login - Member</button>
                 </a>
             </div>
+        </div>
+            
             <div class="new-user-container">
             <span>New member? <a href="{{ url_for('auth.member_signup') }}" class="signup-text">Sign up here</a></span>
             <span class="divider"></span>
@@ -24,7 +27,9 @@
             </div>
         </div>
 
-        
+        <!--<form action="{{ url_for('logout') }}" method="post">
+            <button type="submit">Logout</button>
+        </form> add this in admin home pagnapush na yung bagong admin home-->
 
         <div class="main">
             <div class="divider"></div>
