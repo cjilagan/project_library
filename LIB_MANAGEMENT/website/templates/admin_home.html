@@ -4,9 +4,11 @@
   <div class="container1">
     <header>
       <h1>Library Management System</h1>
+      <form action="{{ url_for('auth.logout') }}" method="post">
       <button class="logout">Logout</button>
+      </form>
     </header>
-
+     
     <nav>
       <button class="nav-btn">Books</button>
       <button class="nav-btn active">Users</button>
