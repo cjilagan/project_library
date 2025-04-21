@@ -7,9 +7,11 @@
         <h1>Are you sure?</h1>
         <form action="{{ url_for('auth.logout') }}" method="post">
         <button class="logout" type="submit">Logout</button>
-        <button class="cancel" onclick="popCancelLogout()">Cancel</button>
+        <button class="cancel" type="button" onclick="popCancelLogout()">Cancel</button>
         </form>
+        
       </div>
+      
       <h1>Library Management System</h1>
       <button class="logout" onclick="popLogout()">Logout</button>
     </header>

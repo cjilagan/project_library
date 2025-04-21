@@ -143,23 +143,21 @@ def admin_signup():
 
     return render_template('admin_create_account.html')
 
-@auth.route('/logout', methods=['GET', 'POST'])
+@auth.route('/logout', methods=['POST'])
 def logout():
-    role = session.get('role')
+    if 'user_id' in session and 'role' in session:
+        role = session['role']
 
-    if role == 'admin':
         session.pop('user_id', None)
         session.pop('role', None)
-        flash('Admin logged out successfully.', category='success')
-        return redirect(url_for('auth.login'))
 
-    elif role == 'member':
-        session.pop('user_id', None)
-        session.pop('role', None)
-        flash('Member logged out successfully.', category='success')
-        return redirect(url_for('auth.login'))
-
+        if role == 'admin':
+            flash('Admin logged out successfully.', category='success')
+        elif role == 'member':
+            flash('Member logged out successfully.', category='success')
+        else:
+            flash('User logged out successfully.', category='success')
     else:
-        flash('No user is currently logged in.', category='error')
-        
+        flash('Logged out successfully', category='success')
+
     return redirect(url_for('auth.login'))

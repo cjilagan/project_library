@@ -1,6 +1,37 @@
-{% extends "base.html" %}
-{% block title %}{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Library Management System</title>
+  <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Library Management System</h1>
+    <button class="logout-btn">Logout</button>
+  </div>
 
-{% block content %}
-    <H1>MEMBER HOME</H1>
-{% endblock %}
+  <div class="actions">
+    <button class="action-btn">Borrow</button>
+    <button class="action-btn">Return</button>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Search Books...">
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Book Name</th>
+        <th>Author</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+</body>
+</html>
