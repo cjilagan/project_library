@@ -123,3 +123,10 @@ body {
     cursor: pointer;
   }
   
+  .hidden-row {
+    display: none;
+  }
+  
+  .show-row {
+    display: table-row;
+  }
