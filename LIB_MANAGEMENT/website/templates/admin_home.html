@@ -3,10 +3,15 @@
 {% block content %}
   <div class="container1">
     <header>
+      <div class="container-logout">
+        <h1>Are you sure?</h1>
+        <form action="{{ url_for('auth.logout') }}" method="post">
+        <button class="logout" type="submit">Logout</button>
+        <button class="cancel" onclick="popCancelLogout()">Cancel</button>
+        </form>
+      </div>
       <h1>Library Management System</h1>
-      <form action="{{ url_for('auth.logout') }}" method="post">
-      <button class="logout">Logout</button>
-      </form>
+      <button class="logout" onclick="popLogout()">Logout</button>
     </header>
      
     <nav>
@@ -36,4 +41,16 @@
   </div>
   <tbody>
   
+    <script>
+    const popLogout = ()=>{                 
+      const containerlogout=document.querySelector('.container-logout')
+      containerlogout.style.display='block'
+    }
+
+    const popCancelLogout = ()=>{
+      const containerlogout=document.querySelector('.container-logout')
+      containerlogout.style.display='none'
+    }
+    
+    </script>
 {% endblock %}

@@ -23,6 +23,38 @@ body {
     border-bottom: 2px solid #ccc;
   }
   
+  .container-logout{
+    display: none;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 20rem;
+    background: url('https://i.pinimg.com/736x/8e/cc/85/8ecc858ee6233721a999a1adb5be981b.jpg');
+    padding: 20px;
+    border-radius: 10px;
+    h1{
+        text-align: center;
+        margin-bottom: 25px;
+        color: #f8f8f8;
+      }
+    .cancel{
+      background-color: #fffefe;
+      color: #4b2e13;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    form{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 30px;
+    }
+    }
+
+
   .logout {
     background-color: #4b2e13;
     color: white;
