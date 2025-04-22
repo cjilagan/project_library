@@ -1,23 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Library Management System</title>
-  <link rel="stylesheet" href="style3.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Library Management System</h1>
-    <button class="logout-btn">Logout</button>
-  </div>
+{% extends "base.html" %}
+{% block title %}{% endblock %}
 
+{% block content %}
+  <div class="header2">
+    <h1>Library Management System</h1>
+    <div class="container-logout1">
+      <h1>Are you sure?</h1>
+      <form action="{{ url_for('auth.logout') }}" method="post">
+      <button class="logout-btn" type="submit">Logout</button>
+      <button class="cancel" type="button" onclick="popCancelLogout()">Cancel</button>
+      </form>
+    </div>
+  </div>
+  <button class="logout-btns" onclick="popLogout()">Logout</button>
+  
   <div class="actions">
     <button class="action-btn">Borrow</button>
     <button class="action-btn">Return</button>
   </div>
 
-  <div class="search-bar">
+  <div class="search-bar1">
     <input type="text" placeholder="Search Books...">
   </div>
 
@@ -33,5 +35,16 @@
 
     </tbody>
   </table>
-</body>
-</html>
+  <script>
+    const popLogout = ()=>{                 
+      const containerlogout=document.querySelector('.container-logout1')
+      containerlogout.style.display='block'
+    }
+
+    const popCancelLogout = ()=>{
+      const containerlogout=document.querySelector('.container-logout1')
+      containerlogout.style.display='none'
+    }
+    
+    </script>
+{% endblock %}
