@@ -41,7 +41,7 @@ body {
     right: 50px;
     }
     
-}
+
 
 .login-box button {
     padding: 10px 20px;
@@ -74,10 +74,19 @@ body {
 }
 
 .header1 {
+    display: flex;
+    padding: 10px 20px;
     color: black;
     margin-top: 150px;
     font-size: 50px;
     font-family: 'Brush Script MT', cursive;
+    flex-direction: column;
+    align-items: center;
+    }
+
+.header1 h1 {
+    margin-bottom: 30px;
+    color: #333;
     }
     
 .right-container1 {
