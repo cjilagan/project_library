@@ -770,19 +770,6 @@ form {
     box-shadow: 2px 2px 5px #333;
   }
   
-  .search-bar1 {
-    margin: 20px;
-  }
-  
-  .search-bar1 input {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #ffeaea;
-    border: none;
-    border-radius: 5px;
-  }
-  
   .table table {
     width: 100%;
     border-collapse: collapse;
