@@ -16,27 +16,27 @@
         <form method="POST">
             <div class="mb-3">
                 <label for="admin_name" class="form-label">Admin Name</label>
-                <input type="text" class="form-control" id="admin_name" name="admin_name" value="{{ admin_name }}" required>
+                <input type="text" placeholder="Enter your name" class="form-control" id="admin_name" name="admin_name" value="{{ admin_name }}" required>
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ admin_email }}" required>
+                <input type="email" placeholder="Enter your email" class="form-control" id="email" name="email" value="{{ admin_email }}" required>
             </div>
 
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <input type="password" placeholder="Enter your password" class="form-control" id="password" name="password" required>
             </div>
 
             <div class="mb-3">
                 <label for="phone_number" class="form-label">Phone Number</label>
-                <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ admin_phonenumber }}">
+                <input type="text" placeholder="Enter your phone number" class="form-control" id="phone_number" name="phone_number" value="{{ admin_phonenumber }}">
             </div>
 
             <div class="mb-3">
                 <label for="admin_secret_key" class="form-label">Admin Secret Key</label>
-                <input type="password" class="form-control" id="admin_secret_key" name="admin_secret_key" required>
+                <input type="password" placeholder="Enter secret key" class="form-control" id="admin_secret_key" name="admin_secret_key" required>
             </div>
             <small class="text-muted">Enter the secret key provided by the system.</small>
 
