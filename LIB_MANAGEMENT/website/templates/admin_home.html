@@ -6,10 +6,9 @@
       <div class="container-logout">
         <h1>Are you sure?</h1>
         <form action="{{ url_for('auth.logout') }}" method="post">
-        <button class="logout" type="submit">Logout</button>
-        <button class="cancel" type="button" onclick="popCancelLogout()">Cancel</button>
+          <button class="logout" type="submit">Logout</button>
+          <button class="cancel" type="button" onclick="popCancelLogout()">Cancel</button>
         </form>
-        
       </div>
       
       <h1>Library Management System</h1>
@@ -18,12 +17,11 @@
      
     <div class="navi">
       <nav>
-      <button class="nav-btn active">Books</button>
-      <button class="nav-btn">Users</button>
-      <button class="nav-btn">Borrow Request</button>
-    </nav>
+        <button class="nav-btn active" onclick="popBooks()">Books</button>
+        <button class="nav-btn" onclick="popUser()">Users</button>
+        <button class="nav-btn">Borrow Request</button>
+      </nav>
     </div>
-    
 
     <div class="search-bar">
       <input type="text" placeholder="Search Users..." />
@@ -38,6 +36,9 @@
             <th>Status</th>
             <th>Manage</th>
           </tr>
+        </thead>
+        <tbody>
+          
         </tbody>
       </table>
     </div>
@@ -45,70 +46,77 @@
     <div class="manage-section">
       <button class="manage-btn">Manage</button>
     </div>
-
   </div>
-  <tbody>
-  
-    <div class="container2">
-      <header>
-        <div class="container-logout1">
-          <h1>Are you sure?</h1>
-          <form action="{{ url_for('auth.logout') }}" method="post">
+
+  <div class="container2" style="display:none;">
+    <header>
+      <div class="container-logout1">
+        <h1>Are you sure?</h1>
+        <form action="{{ url_for('auth.logout') }}" method="post">
           <button class="logout" type="submit">Logout</button>
           <button class="cancel" type="button" onclick="popCancelLogout()">Cancel</button>
-          </form>
-          
-        </div>
-        
-        <h1>Library Management System</h1>
-        <button class="logout" onclick="popLogout()">Logout</button>
-      </header>
-       
-      <div class="navi1">
-        <nav>
-        <button class="nav-btn1">Books</button>
-        <button class="nav-btn1 active">Users</button>
-        <button class="nav-btn1">Borrow Request</button>
-      </nav>
+        </form>
       </div>
       
-  
-      <div class="search-bar1">
-        <input type="text" placeholder="Search Users..." />
-      </div>
-  
-      <div class="table1">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone Number</th>
-              <th>Manage</th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-  
-      <div class="manage-section1">
-        <button class="manage-btn1">Manage</button>
-      </div>
-  
+      <h1>Library Management System</h1>
+      <button class="logout" onclick="popLogout()">Logout</button>
+    </header>
+     
+    <div class="navi1">
+      <nav>
+        <button class="nav-btn1" onclick="popBooks()">Books</button>
+        <button class="nav-btn1 active" onclick="popUser()">Users</button>
+        <button class="nav-btn1">Borrow Request</button>
+      </nav>
     </div>
-    <tbody>
-  
-    <script>
-    const popLogout = ()=>{                 
-      const containerlogout=document.querySelector('.container-logout')
-      containerlogout.style.display='block'
-    }
 
-    const popCancelLogout = ()=>{
-      const containerlogout=document.querySelector('.container-logout')
-      containerlogout.style.display='none'
-    }
-    
-    </script>
+    <div class="search-bar1">
+      <input type="text" placeholder="Search Users..." />
+    </div>
 
+    <div class="table1">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Manage</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+    </div>
 
+    <div class="manage-section1">
+      <button class="manage-btn1">Manage</button>
+    </div>
+  </div>
+
+  <script>
+    const popLogout = () => {
+      document.querySelector('.container-logout').style.display = 'block';
+    };
+
+    const popCancelLogout = () => {
+      document.querySelector('.container-logout').style.display = 'none';
+    };
+
+    const popUser = () => {
+      document.querySelector('.container1').style.display = 'none';
+      document.querySelector('.container2').style.display = 'block';
+    };
+
+    const popBooks = () => {
+      document.querySelector('.container1').style.display = 'block';
+      document.querySelector('.container2').style.display = 'none';
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelector('.container1').style.display = 'block';
+      document.querySelector('.container2').style.display = 'none';
+    });
+  </script>
 {% endblock %}

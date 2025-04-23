@@ -447,7 +447,7 @@ form {
 
 .container1 {
     position: relative;
-    display: block;
+    display: none;
     top: 60px;
     max-width: 900px;
     margin: auto;
