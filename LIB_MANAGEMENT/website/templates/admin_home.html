@@ -19,12 +19,12 @@
       <nav>
         <button class="nav-btn active" onclick="popBooks()">Books</button>
         <button class="nav-btn" onclick="popUser()">Users</button>
-        <button class="nav-btn">Borrow Request</button>
+        <button class="nav-btn" onclick="popBorrowReq()">Borrow Request</button>
       </nav>
     </div>
 
     <div class="search-bar">
-      <input type="text" placeholder="Search Users..." />
+      <input type="text" placeholder="Search Books..." />
     </div>
 
     <div class="table">
@@ -66,7 +66,7 @@
       <nav>
         <button class="nav-btn1" onclick="popBooks()">Books</button>
         <button class="nav-btn1 active" onclick="popUser()">Users</button>
-        <button class="nav-btn1">Borrow Request</button>
+        <button class="nav-btn1" onclick="popBorrowReq()">Borrow Request</button>
       </nav>
     </div>
 
@@ -95,6 +95,53 @@
     </div>
   </div>
 
+  <div class="container3" style="display:none;">
+    <header>
+      <div class="container-logout2">
+        <h1>Are you sure?</h1>
+        <form action="{{ url_for('auth.logout') }}" method="post">
+          <button class="logout" type="submit">Logout</button>
+          <button class="cancel" type="button" onclick="popCancelLogout()">Cancel</button>
+        </form>
+      </div>
+      
+      <h1>Library Management System</h1>
+      <button class="logout" onclick="popLogout()">Logout</button>
+    </header>
+     
+    <div class="navi2">
+      <nav>
+        <button class="nav-btn2" onclick="popBooks()">Books</button>
+        <button class="nav-btn2" onclick="popUser()">Users</button>
+        <button class="nav-btn2 active" onclick="popBorrowReq()">Borrow Request</button>
+      </nav>
+    </div>
+
+    <div class="search-bar2">
+      <input type="text" placeholder="Search Users..." />
+    </div>
+
+    <div class="table2">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Manage</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+    </div>
+
+    <div class="manage-section2">
+      <button class="manage-btn2">Manage</button>
+    </div>
+  </div>
+
   <script>
     const popLogout = () => {
       document.querySelector('.container-logout').style.display = 'block';
@@ -107,16 +154,25 @@
     const popUser = () => {
       document.querySelector('.container1').style.display = 'none';
       document.querySelector('.container2').style.display = 'block';
+      document.querySelector('.container3').style.display = 'none';
     };
 
     const popBooks = () => {
       document.querySelector('.container1').style.display = 'block';
       document.querySelector('.container2').style.display = 'none';
+      document.querySelector('.container3').style.display = 'none';
+    };
+
+    const popBorrowReq = () => {
+      document.querySelector('.container1').style.display = 'none';
+      document.querySelector('.container2').style.display = 'none';
+      document.querySelector('.container3').style.display = 'block';
     };
 
     document.addEventListener("DOMContentLoaded", () => {
       document.querySelector('.container1').style.display = 'block';
       document.querySelector('.container2').style.display = 'none';
+      document.querySelector('.container3').style.display = 'none';
     });
   </script>
 {% endblock %}
