@@ -25,3 +25,26 @@ def delete_member(member_id):
     db.session.commit()
     flash(f"Member {member.name} has been deleted.", "success")
     return redirect(url_for('views.admin_homepage'))
+
+@views.route('/admin/edit_member/<int:member_id>', methods=['GET', 'POST'])
+def edit_member(member_id):
+    member = User.query.get_or_404(member_id)
+    if member.role != 'member':
+        flash("You can only edit members.", "warning")
+        return redirect(url_for('views.admin_homepage'))
+
+    if request.method == 'POST':
+        member.name = request.form.get('name').strip()
+        member.email = request.form.get('email').strip()
+        member.phone_number = request.form.get('phone_number').strip()
+
+        try:
+            db.session.commit()
+            flash("Member updated successfully!", "success")
+            return redirect(url_for('views.admin_homepage'))
+        except Exception as e:
+            db.session.rollback()
+            flash(f"Update failed: {str(e)}", "danger")
+
+    return render_template('edit_member.html', member=member)
+
