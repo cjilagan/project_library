@@ -928,4 +928,94 @@ form {
       gap: 30px;
     }
     }
-      
+      /* style.css */
+
+    .body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #1c1c1c;
+    }
+
+    .container4 {
+      background: url('https://i.pinimg.com/736x/01/13/f9/0113f94f11c47c63ce2221645121b863.jpg');
+      padding:50px 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      width: 350px;
+    }
+
+    .h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #2e2e2e;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+      color: #000;
+    }
+    .modal h2 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    
+
+    .input.form-control {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 10px 0;
+      font-size: 16px;
+      border-radius: 5px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: #1E90FF;
+      color: rgb(0, 0, 0);
+      margin-top: 10px;
+    }
+
+    .btn-primary:hover {
+    background-color: #187bcd;
+    }
+
+    .btn-secondary {
+      background-color: #FF4C4C;
+      color: rgb(0, 0, 0);
+      text-align: center;
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      background-color: #d43f3f;
+    }
