@@ -108,3 +108,35 @@ function switchTab(id) {
         setTimeout(() => message.remove(), 500); 
     });
 }, 5000);
+
+const popLogout = () => {
+  document.querySelector('.container-logout').style.display = 'block';
+};
+
+const popCancelLogout = () => {
+  document.querySelector('.container-logout').style.display = 'none';
+};
+
+const popUser = () => {
+  document.querySelector('.container1').style.display = 'none';
+  document.querySelector('.container2').style.display = 'block';
+  document.querySelector('.container3').style.display = 'none';
+};
+
+const popBooks = () => {
+  document.querySelector('.container1').style.display = 'block';
+  document.querySelector('.container2').style.display = 'none';
+  document.querySelector('.container3').style.display = 'none';
+};
+
+const popBorrowReq = () => {
+  document.querySelector('.container1').style.display = 'none';
+  document.querySelector('.container2').style.display = 'none';
+  document.querySelector('.container3').style.display = 'block';
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector('.container1').style.display = 'block';
+  document.querySelector('.container2').style.display = 'none';
+  document.querySelector('.container3').style.display = 'none';
+});

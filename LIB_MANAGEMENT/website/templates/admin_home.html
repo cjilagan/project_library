@@ -125,8 +125,10 @@
       <table>
         <thead>
           <tr>
-            <th>Requests</th>
-            <th>Confirm?</th>
+            <th>Name</th>
+            <th>Book</th>
+            <th>Date</th>
+            <th>Accept</th>
           </tr>
         </thead>
         <tbody>
@@ -140,37 +142,4 @@
     </div>
   </div>
 
-  <script>
-    const popLogout = () => {
-      document.querySelector('.container-logout').style.display = 'block';
-    };
-
-    const popCancelLogout = () => {
-      document.querySelector('.container-logout').style.display = 'none';
-    };
-
-    const popUser = () => {
-      document.querySelector('.container1').style.display = 'none';
-      document.querySelector('.container2').style.display = 'block';
-      document.querySelector('.container3').style.display = 'none';
-    };
-
-    const popBooks = () => {
-      document.querySelector('.container1').style.display = 'block';
-      document.querySelector('.container2').style.display = 'none';
-      document.querySelector('.container3').style.display = 'none';
-    };
-
-    const popBorrowReq = () => {
-      document.querySelector('.container1').style.display = 'none';
-      document.querySelector('.container2').style.display = 'none';
-      document.querySelector('.container3').style.display = 'block';
-    };
-
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelector('.container1').style.display = 'block';
-      document.querySelector('.container2').style.display = 'none';
-      document.querySelector('.container3').style.display = 'none';
-    });
-  </script>
 {% endblock %}
