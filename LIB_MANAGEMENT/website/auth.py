@@ -1,5 +1,6 @@
 import os
-from flask import Blueprint, render_template, redirect, flash, request, url_for, session, jsonify
+import sqlite3
+from flask import Blueprint, render_template, redirect, flash, request, url_for, session
 from werkzeug.security import check_password_hash, generate_password_hash
 from .models import Admin, User
 from .extensions import db
