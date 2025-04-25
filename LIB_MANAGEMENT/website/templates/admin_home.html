@@ -105,11 +105,11 @@
             <td>
               <div class="manage-buttons">
                 <a href="{{ url_for('views.edit_member', member_id=member.id) }}" class="btn btn-warning btn-sm">
-                  <i class="fas fa-edit"></i> Edit
+                  <i class="fas fa-edit"></i>
                 </a> 
                 <form method="POST" action="{{ url_for('views.delete_member', member_id=member.id) }}">
                   <button type="submit" class="btn btn-danger btn-sm">
-                    <i class="fas fa-trash-alt"></i> Delete
+                    <i class="fas fa-trash-alt"></i>
                   </button>
                 </form>
               </div>
