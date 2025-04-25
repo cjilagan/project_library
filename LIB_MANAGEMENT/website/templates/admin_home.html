@@ -44,8 +44,20 @@
     </div>
 
     <div class="manage-section">
-      <button class="manage-btn">Manage</button>
+      <button class="manage-btn" onclick="toggleAddBookForm()">Add Book</button>
     </div>
+  </div>
+
+  <div class="book-form" id="addBookForm" style="display:none;">
+      <button class="back-button" type="button" onclick="document.getElementById('addBookForm').style.display = 'none';">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1>Add Books</h1>
+      <input type="text" name="title" placeholder="Book Title..." required>
+      <input type="text" name="author" placeholder="Book Author..." required>
+      <input type="text" name="isbn" placeholder="ISBN" required>
+      <input type="number" name="available_copies" placeholder="Available Copies" value="1" min="1">
+      <button type="submit">Confirm</button>
   </div>
 
   <div class="container2" style="display:none;">

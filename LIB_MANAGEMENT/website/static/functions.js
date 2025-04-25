@@ -140,3 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector('.container2').style.display = 'none';
   document.querySelector('.container3').style.display = 'none';
 });
+
+function toggleAddBookForm() {
+  const form = document.getElementById('addBookForm');
+  form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
