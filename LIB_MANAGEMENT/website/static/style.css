@@ -716,6 +716,48 @@ form {
     text-align: center;
   }
   
+  .manage-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 6px; 
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-sm {
+    padding: 6px 10px;
+    font-size: 13px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-warning {
+    background-color: #5c3b16;
+    color: white;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #e7971e;
+}
+
+.btn-danger {
+    background-color: #FF4C4C;
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #d43f3f;
+}
+
+.manage-buttons form {
+    margin: 0;
+}
+
   .table table {
     width: 100%;
     border-collapse: collapse;
@@ -940,11 +982,19 @@ form {
       background: url('https://i.pinimg.com/736x/01/13/f9/0113f94f11c47c63ce2221645121b863.jpg');
       padding:50px 0;
       min-height: 100vh;
-      display: flex;
+      display:flex;
       align-items: center;
       justify-content: center;
     }
 
+    .container4 h2{
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #2e2e2e;
+    }
+    
     .form {
       background-color: white;
       padding: 30px 40px;
@@ -978,7 +1028,28 @@ form {
       font-weight: bold;
     }
     
-
+    .icon-input {
+      position: relative;
+    }
+  
+    .icon-input i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+      font-size: 16px;
+    }
+  
+    .form-control {
+      width: 100%;
+      padding: 12px 12px 12px 38px; /* left padding to fit the icon */
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+  
     .input.form-control {
       width: 100%;
       padding: 8px 10px;

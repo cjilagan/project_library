@@ -91,10 +91,16 @@
             <td>{{ member.email }}</td>
             <td>{{ member.phone_number }}</td>
             <td>
-              <a href="{{ url_for('views.edit_member', member_id=member.id) }}" class="btn btn-warning btn-sm">Edit</a>
-              <form method="POST" action="{{ url_for('views.delete_member', member_id=member.id) }}" style="display:inline;">
-                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-              </form>
+              <div class="manage-buttons">
+                <a href="{{ url_for('views.edit_member', member_id=member.id) }}" class="btn btn-warning btn-sm">
+                  <i class="fas fa-edit"></i> Edit
+                </a> 
+                <form method="POST" action="{{ url_for('views.delete_member', member_id=member.id) }}">
+                  <button type="submit" class="btn btn-danger btn-sm">
+                    <i class="fas fa-trash-alt"></i> Delete
+                  </button>
+                </form>
+              </div>
             </td>
           </tr>
           {% endfor %}
