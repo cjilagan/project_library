@@ -38,27 +38,103 @@
           </tr>
         </thead>
         <tbody>
-          
+          {% for book in books %}
+          <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ 'Available' if book.available_copies > 0 else 'Unavailable'}}</td>
+            <td></td>
+          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
 
     <div class="manage-section">
       <button class="manage-btn" onclick="toggleAddBookForm()">Add Book</button>
+      <button class="manage-btn" onclick="showManageBooks()">Manage</button>
     </div>
   </div>
 
-  <div class="book-form" id="addBookForm" style="display:none;">
-      <button class="back-button" type="button" onclick="document.getElementById('addBookForm').style.display = 'none';">
-        <i class="fas fa-arrow-left"></i>
-      </button>
-      <h1>Add Books</h1>
-      <input type="text" name="title" placeholder="Book Title..." required>
-      <input type="text" name="author" placeholder="Book Author..." required>
-      <input type="text" name="isbn" placeholder="ISBN" required>
-      <input type="number" name="available_copies" placeholder="Available Copies" value="1" min="1">
-      <button type="submit">Confirm</button>
+  <div class="container6" style="display:none;">
+    <header>
+      <div class="container-logout3">
+        <h1>Are you sure?</h1>
+        <form action="{{ url_for('auth.logout') }}" method="post">
+          <button class="logout" type="submit">Logout</button>
+          <button class="cancel" type="button" onclick="popCancelLogout()">Cancel</button>
+        </form>
+      </div>
+      
+      <h1>Library Management System</h1>
+      <button class="logout" onclick="popLogout()">Logout</button>
+    </header>
+     
+    <div class="navi4">
+      <nav>
+        <button class="nav-btn4 active" onclick="popBooks()">Books</button>
+        <button class="nav-btn4" onclick="popUser()">Users</button>
+        <button class="nav-btn4" onclick="popBorrowReq()">Borrow Request</button>
+      </nav>
+    </div>
+
+    <div class="search-bar4">
+      <input type="text" placeholder="Search Books..." />
+    </div>
+
+    <div class="table4">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Status</th>
+            <th>Manage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for book in books %}
+          <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ 'Available' if book.available_copies > 0 else 'Unavailable'}}</td>
+            <td>
+              <a href="{{ url_for('views.edit_book', book_id=book.id) }}" class="btn btn-warning btn-sm">
+                <i class="fas fa-edit"></i> Edit
+              </a> 
+
+              <form method="POST" action="{{ url_for('views.delete_book', book_id=book.id) }}" style="display:inline;">
+                <button type="submit" class="btn btn-danger btn-sm">
+                  <i class="fas fa-trash-alt"></i> Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="manage-section4">
+      <button class="manage-btn4" onclick="toggleAddBookForm()">Add Book</button>
+      <button class="manage-btn4">Manage</button>
+      <button class="back-button-book" onclick="backToBooks()">Back</button>
+    </div>
   </div>
+
+  <form class="book-form" id="addBookForm" action="{{ url_for('views.add_book') }}" method="POST" style="display:none;">
+    <button class="back-button" type="button" onclick="document.getElementById('addBookForm').style.display = 'none';">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <h1>Add Books</h1>
+    
+    <input type="text" name="title" placeholder="Book Title..." required>
+    <input type="text" name="author" placeholder="Book Author..." required>
+    <input type="text" name="isbn" placeholder="ISBN" required>
+    <input type="number" name="available_copies" placeholder="Available Copies" value="1" min="1">
+    
+    <button type="submit">Confirm</button>
+  </form>
 
   <div class="container2" style="display:none;">
     <header>
@@ -120,8 +196,65 @@
       </table>
     </div>
 
-    <div class="manage-section1">
+    <div class="manage-section1 active">
       <button class="manage-btn1">Manage</button>
+      <button class="back-button" onclick="backToUsers()">Back</button>
+    </div>
+  </div>
+
+  <div class="container5" style="display:none;">
+    <header>
+      <div class="container-logout3">
+        <h1>Are you sure?</h1>
+        <form action="{{ url_for('auth.logout') }}" method="post">
+          <button class="logout" type="submit">Logout</button>
+          <button class="cancel" type="button" onclick="popCancelLogout()">Cancel</button>
+        </form>
+      </div>
+      
+      <h1>Library Management System</h1>
+      <button class="logout" onclick="popLogout()">Logout</button>
+    </header>
+     
+    <div class="navi3">
+      <nav>
+        <button class="nav-btn3" onclick="popBooks()">Books</button>
+        <button class="nav-btn3 active" onclick="popUser()">Users</button>
+        <button class="nav-btn3" onclick="popBorrowReq()">Borrow Request</button>
+      </nav>
+    </div>
+
+    <div class="search-bar3">
+      <input type="text" placeholder="Search Users..." />
+    </div>
+
+    <div class="table3">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Manage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for member in members %}
+          <tr>
+            <td>{{ member.name }}</td>
+            <td>{{ member.email }}</td>
+            <td>{{ member.phone_number }}</td>
+            <td>
+          
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="manage-section3">
+      <button class="manage-btn3 active" onclick=showManageUsers()>Manage</button>
     </div>
   </div>
 

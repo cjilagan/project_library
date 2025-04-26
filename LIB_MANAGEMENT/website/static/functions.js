@@ -119,29 +119,53 @@ const popCancelLogout = () => {
 
 const popUser = () => {
   document.querySelector('.container1').style.display = 'none';
-  document.querySelector('.container2').style.display = 'block';
+  document.querySelector('.container2').style.display = 'none';
   document.querySelector('.container3').style.display = 'none';
+  document.querySelector('.container5').style.display = 'block';
 };
 
 const popBooks = () => {
   document.querySelector('.container1').style.display = 'block';
   document.querySelector('.container2').style.display = 'none';
   document.querySelector('.container3').style.display = 'none';
+  document.querySelector('.container5').style.display = 'none';
 };
 
 const popBorrowReq = () => {
   document.querySelector('.container1').style.display = 'none';
   document.querySelector('.container2').style.display = 'none';
   document.querySelector('.container3').style.display = 'block';
+  document.querySelector('.container5').style.display = 'none';
 };
 
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelector('.container1').style.display = 'block';
   document.querySelector('.container2').style.display = 'none';
   document.querySelector('.container3').style.display = 'none';
+  document.querySelector('.container5').style.display = 'none';
 });
 
 function toggleAddBookForm() {
   const form = document.getElementById('addBookForm');
   form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
+
+function showManageUsers() {
+  document.querySelector('.container5').style.display = 'none';
+  document.querySelector('.container2').style.display = 'block';
+}
+
+function backToUsers() {
+  document.querySelector('.container2').style.display = 'none';
+  document.querySelector('.container5').style.display = 'block';
+}
+
+function showManageBooks(){
+  document.querySelector('.container1').style.display = 'none';
+  document.querySelector('.container6').style.display = 'block';
+}
+
+function backToBooks() {
+  document.querySelector('.container1').style.display = 'block';
+  document.querySelector('.container6').style.display = 'none';
 }
