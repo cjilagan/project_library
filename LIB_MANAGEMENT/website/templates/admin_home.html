@@ -46,6 +46,9 @@
             <td></td>
           </tr>
           {% endfor %}
+          <tr id="no-results" style="display: none;">
+            <td colspan="4" style="text-align: center; color: gray;">No books found.</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -111,6 +114,9 @@
             </td>
           </tr>
           {% endfor %}
+          <tr id="no-results" style="display: none;">
+            <td colspan="4" style="text-align: center; color: gray;">No books found.</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -192,6 +198,9 @@
             </td>
           </tr>
           {% endfor %}
+          <tr id="no-results" style="display: none;">
+            <td colspan="4" style="text-align: center; color: gray;">No books found.</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -245,10 +254,12 @@
             <td>{{ member.email }}</td>
             <td>{{ member.phone_number }}</td>
             <td>
-          
             </td>
           </tr>
           {% endfor %}
+          <tr id="no-results" style="display: none;">
+            <td colspan="4" style="text-align: center; color: gray;">No books found.</td>
+          </tr>
         </tbody>
       </table>
     </div>

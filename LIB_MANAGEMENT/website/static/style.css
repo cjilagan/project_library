@@ -1458,3 +1458,14 @@ form {
 .btn-secondaryy:hover {
     background-color: #888;
 }
+
+#no-results {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: none; /* default hidden */
+}
+
+#no-results.show {
+  display: table-row;
+  opacity: 1;
+}

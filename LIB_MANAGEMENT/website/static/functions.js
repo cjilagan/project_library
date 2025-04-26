@@ -169,3 +169,69 @@ function backToBooks() {
   document.querySelector('.container1').style.display = 'block';
   document.querySelector('.container6').style.display = 'none';
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const searchSections = [
+        {inputSelector: '.search-bar input', tableSelector: '.table tbody'},
+        {inputSelector: '.search-bar4 input', tableSelector: '.table4 tbody'},
+        {inputSelector: '.search-bar1 input', tableSelector: '.table1 tbody'},
+        {inputSelector: '.search-bar3 input', tableSelector: '.table3 tbody'},
+        {inputSelector: '.search-bar2 input', tableSelector: '.table2 tbody'}
+    ];
+
+    searchSections.forEach(section => {
+        const searchInput = document.querySelector(section.inputSelector);
+        const tableBody = document.querySelector(section.tableSelector);
+
+        if (searchInput && tableBody) {
+            const tableRows = Array.from(tableBody.querySelectorAll('tr')).filter(row => row.id !== 'no-results');
+            const noResultsRow = tableBody.querySelector('#no-results');
+
+            searchInput.addEventListener('input', function() {
+                const searchTerm = searchInput.value.toLowerCase();
+                let anyVisible = false;
+
+                tableRows.forEach(row => {
+                    const cells = Array.from(row.children);
+                    const match = cells.some(cell => cell.textContent.toLowerCase().includes(searchTerm));
+
+                    if (match) {
+                        row.style.display = '';
+                        anyVisible = true;
+                        cells.forEach(cell => highlightText(cell, searchTerm));
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+
+                if (searchTerm === '') {
+                    tableRows.forEach(row => {
+                        row.children.forEach(cell => removeHighlight(cell));
+                    });
+                }
+
+                if (noResultsRow) {
+                    if (anyVisible) {
+                        noResultsRow.classList.remove('show');
+                        setTimeout(() => noResultsRow.style.display = 'none', 300);
+                    } else {
+                        noResultsRow.style.display = 'table-row';
+                        setTimeout(() => noResultsRow.classList.add('show'), 10);
+                    }
+                }
+            });
+        }
+    });
+
+    function highlightText(cell, term) {
+        const text = cell.textContent;
+        const regex = new RegExp(`(${term})`, 'gi');
+        const highlighted = text.replace(regex, '<mark>$1</mark>');
+        cell.innerHTML = highlighted;
+    }
+
+    function removeHighlight(cell) {
+        cell.innerHTML = cell.textContent;
+    }
+});
+
