@@ -46,9 +46,9 @@
             <td></td>
           </tr>
           {% endfor %}
-          <tr id="no-results" style="display: none;">
+          <tr id="no-results" style="display: none;" data-message="No books found.">
             <td colspan="4" style="text-align: center; color: gray;">No books found.</td>
-          </tr>
+          </tr>          
         </tbody>
       </table>
     </div>
@@ -114,9 +114,9 @@
             </td>
           </tr>
           {% endfor %}
-          <tr id="no-results" style="display: none;">
+          <tr id="no-results" style="display: none;" data-message="No books found.">
             <td colspan="4" style="text-align: center; color: gray;">No books found.</td>
-          </tr>
+          </tr>          
         </tbody>
       </table>
     </div>
@@ -198,9 +198,9 @@
             </td>
           </tr>
           {% endfor %}
-          <tr id="no-results" style="display: none;">
-            <td colspan="4" style="text-align: center; color: gray;">No books found.</td>
-          </tr>
+          <tr id="no-results" style="display: none;" data-message="No users found.">
+            <td colspan="4" style="text-align: center; color: gray;">No users found.</td>
+          </tr>          
         </tbody>
       </table>
     </div>
@@ -257,9 +257,9 @@
             </td>
           </tr>
           {% endfor %}
-          <tr id="no-results" style="display: none;">
-            <td colspan="4" style="text-align: center; color: gray;">No books found.</td>
-          </tr>
+          <tr id="no-results" style="display: none;" data-message="No users found.">
+            <td colspan="4" style="text-align: center; color: gray;">No users found.</td>
+          </tr>          
         </tbody>
       </table>
     </div>
@@ -304,6 +304,9 @@
             <th>Date</th>
             <th>Accept</th>
           </tr>
+          <tr id="no-results" style="display: none;" data-message="No borrow requests found.">
+            <td colspan="4" style="text-align: center; color: gray;">No borrow requests found.</td>
+          </tr>          
         </thead>
         <tbody>
           
