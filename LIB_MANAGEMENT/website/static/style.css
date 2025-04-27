@@ -577,35 +577,35 @@ form {
     }
 
     .container-logout1{
-        display: none;
-        position: fixed;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        width: 20rem;
-        background: url('https://i.pinimg.com/736x/8e/cc/85/8ecc858ee6233721a999a1adb5be981b.jpg');
-        padding: 20px;
-        border-radius: 10px;
-        h1{
-            text-align: center;
-            margin-bottom: 25px;
-            color: #f8f8f8;
-          }
-        .cancel{
-          background-color: #fffefe;
-          color: #4b2e13;
-          padding: 8px 16px;
-          border: none;
-          border-radius: 6px;
-          cursor: pointer;
+      display: none;
+      position: fixed;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 20rem;
+      background: url('https://i.pinimg.com/736x/8e/cc/85/8ecc858ee6233721a999a1adb5be981b.jpg');
+      padding: 20px;
+      border-radius: 10px;
+      h1{
+          text-align: center;
+          margin-bottom: 25px;
+          color: #f8f8f8;
         }
-        form{
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          gap: 30px;
-        }
-        }
+      .cancel{
+        background-color: #fffefe;
+        color: #4b2e13;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      form{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 30px;
+      }
+      }
     
         .container-logout2{
           display: none;
@@ -669,6 +669,36 @@ form {
     }
     }
   
+    .container-logout4{
+      display: none;
+      position: fixed;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 20rem;
+      background: url('https://i.pinimg.com/736x/8e/cc/85/8ecc858ee6233721a999a1adb5be981b.jpg');
+      padding: 20px;
+      border-radius: 10px;
+      h1{
+          text-align: center;
+          margin-bottom: 25px;
+          color: #f8f8f8;
+        }
+      .cancel{
+        background-color: #fffefe;
+        color: #4b2e13;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      form{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 30px;
+      }
+      }
   .logout {
     background-color: #4b2e13;
     color: white;
@@ -794,6 +824,16 @@ form {
   }
 
   .search-bar1 input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #ecdcc6;
+    background: #fff0f5;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  .search-bar-member input {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -1168,6 +1208,22 @@ form {
     color: #000;
     text-shadow: 1px 1px #ccc;
   }
+
+  .header3 {
+    background-color: #f2f2f2;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  .header3 h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #000;
+    text-shadow: 1px 1px #ccc;
+  }
   
   .logout-btn {
     background-color: #3b2a1c;
@@ -1193,9 +1249,14 @@ form {
   }
   
   .actions {
-    margin: 20px;
+    text-align: center;
+    margin: 20px 0;
   }
   
+  .actions .action-btn.active{
+    background-color: #3a230d;
+  }
+
   .action-btn {
     background-color: #6f4e37;
     color: white;
@@ -1225,38 +1286,7 @@ form {
     background-color: #f2f2f2;
     font-weight: bold;
   }
-
-  .container-logout1{
-    display: none;
-    position: fixed;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 20rem;
-    background: url('https://i.pinimg.com/736x/8e/cc/85/8ecc858ee6233721a999a1adb5be981b.jpg');
-    padding: 20px;
-    border-radius: 10px;
-    h1{
-        text-align: center;
-        margin-bottom: 25px;
-        color: #f8f8f8;
-      }
-    .cancel{
-      background-color: #fffefe;
-      color: #4b2e13;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    form{
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      gap: 30px;
-    }
-    }
-
+  
     .container4 {
       margin: 0;
       font-family: 'Georgia', serif;
@@ -1489,3 +1519,112 @@ form {
 .logo-img {
   height: 12rem; /* adjust the size if you want */
 }
+
+.table-member table {
+  width: 50%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+.table-member thead {
+  background-color: #6f4e37;
+  color: white;
+}
+
+.table-member thead th {
+  padding: 15px;
+  text-align: left;
+  font-size: 1.1rem;
+}
+
+.table-member tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.table-member tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table-member tbody td {
+  padding: 15px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.table-member tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.table-member1 table {
+  width: 60%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+.table-member1 thead {
+  background-color: #6f4e37;
+  color: white;
+}
+
+.table-member1 thead th {
+  padding: 15px;
+  text-align: left;
+  font-size: 1.1rem;
+}
+
+.table-member1 tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.table-member1 tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table-member1 tbody td {
+  padding: 15px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.table-member1 tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.container-logout1{
+  display: none;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 20rem;
+  background: url('https://i.pinimg.com/736x/8e/cc/85/8ecc858ee6233721a999a1adb5be981b.jpg');
+  padding: 20px;
+  border-radius: 10px;
+  h1{
+      text-align: center;
+      margin-bottom: 25px;
+      color: #f8f8f8;
+    }
+  .cancel{
+    background-color: #fffefe;
+    color: #4b2e13;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+  }
+  }

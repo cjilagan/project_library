@@ -111,10 +111,22 @@ function switchTab(id) {
 
 const popLogout = () => {
   document.querySelector('.container-logout').style.display = 'block';
+  document.querySelector('.container-logout1').style.display = 'block';
+  document.querySelector('.container-logout2').style.display = 'block';
+  document.querySelector('.container-logout3').style.display = 'block';
+  document.querySelector('.container-logout4').style.display = 'block';
 };
+
+const popMemberLogout = () => {
+
+}
 
 const popCancelLogout = () => {
   document.querySelector('.container-logout').style.display = 'none';
+  document.querySelector('.container-logout1').style.display = 'none';
+  document.querySelector('.container-logout2').style.display = 'none';
+  document.querySelector('.container-logout3').style.display = 'none';
+  document.querySelector('.container-logout4').style.display = 'none';
 };
 
 const popUser = () => {
@@ -176,7 +188,8 @@ document.addEventListener('DOMContentLoaded', function() {
       {inputSelector: '.search-bar4 input', tableSelector: '.table4 tbody'},
       {inputSelector: '.search-bar1 input', tableSelector: '.table1 tbody'},
       {inputSelector: '.search-bar3 input', tableSelector: '.table3 tbody'},
-      {inputSelector: '.search-bar2 input', tableSelector: '.table2 tbody'}
+      {inputSelector: '.search-bar2 input', tableSelector: '.table2 tbody'},
+      {inputSelector: '.search-bar-member input', tableSelector: '.table-member tbody'}
   ];
 
   searchSections.forEach(section => {

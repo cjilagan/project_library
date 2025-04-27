@@ -2,6 +2,8 @@ from .extensions import db, bcrypt
 from datetime import datetime, timedelta
 from flask_jwt_extended import create_access_token
 
+def default_due_date():
+    return datetime.utcnow() + timedelta(days=14)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -13,7 +15,7 @@ class User(db.Model):
 
     def generate_token(self):
         return create_access_token(identity={"id": self.id, "role": self.role})
-    
+
 class Admin(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     admin_name = db.Column(db.String(100), nullable=False)
@@ -25,14 +27,13 @@ class Admin(db.Model):
     def __repr__(self):
         return f"<Admin {self.admin_name}>"
 
-
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
     author = db.Column(db.String(255), nullable=False)
     isbn = db.Column(db.String(20), unique=True, nullable=False)
     available_copies = db.Column(db.Integer, default=1)
-    
+
     def __init__(self, title, author, isbn, available_copies=1):
         self.title = title
         self.author = author
@@ -44,7 +45,7 @@ class BorrowRecord(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     book_id = db.Column(db.Integer, db.ForeignKey('book.id'), nullable=False)
     borrow_date = db.Column(db.DateTime, default=datetime.utcnow)
-    due_date = db.Column(db.DateTime, default=lambda: datetime.utcnow() + timedelta(days=14))
+    due_date = db.Column(db.DateTime, default=default_due_date)
     returned = db.Column(db.Boolean, default=False)
 
     user = db.relationship("User", backref="borrowed_books")

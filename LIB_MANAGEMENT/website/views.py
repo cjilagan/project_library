@@ -1,13 +1,15 @@
 from flask import Blueprint, render_template, redirect, flash, request, url_for, session
-from .models import User, Book
-from .extensions import db
+from flask_login import current_user
+from .models import User, Book, BorrowRecord
+from .extensions import db, login_manager
 from .decorators import member_required, admin_required
 
 views = Blueprint('views', __name__)
 
 @views.route('/member/homepage')
 def member_homepage():
-    return render_template('member_home.html')
+    books = Book.query.all() 
+    return render_template('member_home.html', books=books)
 
 @views.route('/admin/homepage')
 def admin_homepage():
@@ -67,6 +69,11 @@ def add_book():
         available_copies=int(available_copies) if available_copies else 1
     )
 
+    existing_book = Book.query.filter_by(isbn=isbn).first()
+    if existing_book:
+        flash('A book with this ISBN already exists!', 'error')
+        return redirect(url_for('views.admin_homepage'))
+
     db.session.add(new_book)
     db.session.commit()
     flash('Book added successfully!', category='success')
@@ -96,3 +103,28 @@ def edit_book(book_id):
         return redirect(url_for('views.admin_homepage'))
 
     return render_template('edit_book.html', book=book)
+
+@views.route('/borrow/<int:book_id>', methods=['POST'])
+def borrow_book(book_id):
+    book = Book.query.get_or_404(book_id)
+
+    borrowed_count = BorrowRecord.query.filter_by(user_id=current_user.id, returned=False).count()
+    if borrowed_count >= 3:  
+        flash('Borrow limit reached (3 books). Return a book first!', 'error')
+        return redirect(url_for('views.member_homepage'))
+    
+    if book.available_copies > 0:
+        book.available_copies -= 1
+
+        borrowed = BorrowRecord(
+            user_id=current_user.id,
+            book_id=book.id
+        )
+
+        db.session.add(borrowed)
+        db.session.commit()
+        flash(f"You have borrowed {book.title}! Due by {borrowed.due_date.date()}", "success")
+    else:
+        flash(f"Sorry, {book.title} is not available.", "error")
+
+    return redirect(url_for('views.member_homepage'))

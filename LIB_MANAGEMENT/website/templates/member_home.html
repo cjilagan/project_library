@@ -2,39 +2,141 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-  <div class="header2">
-    <h1>Library Management System</h1>
-    <div class="container-logout1">
-      <h1>Are you sure?</h1>
-      <form action="{{ url_for('auth.logout') }}" method="post">
-      <button class="logout-btn" type="submit">Logout</button>
-      <button class="cancel" type="button" onclick="popCancelLogout()">Cancel</button>
-      </form>
+  <div class="container-member">
+    <div class="header2">
+      <h1>Library Management System</h1>
+      <div class="container-logout1" style="display: none;">
+        <h1>Are you sure?</h1>
+        <form action="{{ url_for('auth.logout') }}" method="post">
+          <button class="logout-btn" type="submit">Logout</button>
+          <button class="cancel" type="button" onclick="popCancelLogout()">Cancel</button>
+        </form>
+      </div>
+    </div>
+
+    <button class="logout-btns" onclick="popLogout()">Logout</button>
+
+    <div class="actions">
+      <button class="action-btn" onclick="showBorrowBooks()">Borrow</button>
+      <button class="action-btn">Return</button>
+    </div>
+
+    <div class="search-bar-member" style="margin-top: 20px;">
+      <input type="text" id="searchInput" placeholder="Search Books..." onkeyup="searchBooks()">
+    </div>
+
+    <div class="table-member">
+      <table>
+        <thead>
+          <tr>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for book in books %}
+          <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>
+              {% if book.available_copies > 0 %}
+                Available ({{ book.available_copies }} copies)
+              {% else %}
+                Not Available
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
-  <button class="logout-btns" onclick="popLogout()">Logout</button>
+
+  <div class="container-member1" style="display: none;">
+    <div class="header3">
+      <h1>Library Management System</h1>
+      <div class="container-logout1" style="display: none;">
+        <h1>Are you sure?</h1>
+        <form action="{{ url_for('auth.logout') }}" method="post">
+          <button class="logout-btn" type="submit">Logout</button>
+          <button class="cancel" type="button" onclick="popCancelLogout()">Cancel</button>
+        </form>
+      </div>
+    </div>
+
+    <button class="logout-btns" onclick="popLogout()">Logout</button>
+
+    <div class="actions">
+      <button class="action-btn active" onclick="backToDefault()">Borrow</button>
+      <button class="action-btn">Return</button>
+    </div>
+
+    <div class="search-bar-member" style="margin-top: 20px;">
+      <input type="text" id="searchInput" placeholder="Search Books..." onkeyup="searchBooks()">
+    </div>
+
+    <div class="table-member1">
+      <table>
+        <thead>
+          <tr>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for book in books %}
+          <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>
+              {% if book.available_copies > 0 %}
+                Available ({{ book.available_copies }} copies)
+                <form action="{{ url_for('views.borrow_book', book_id=book.id) }}" method="post" style="display:inline;">
+                  <button type="submit" class="action-btn">Borrow</button>
+                </form>
+              {% else %}
+                Not Available
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="borrowed-books" style="display: none;">
+    <h1>My Borrowed Books</h1>
+      <table>
+      <thead>
+        <tr>
+          <th>Book Title</th>
+          <th>Borrow Date</th>
+          <th>Due Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for borrow in borrowed_books %}
+        <tr>
+          <td>{{ borrow.book.title }}</td>
+          <td>{{ borrow.borrow_date.strftime('%Y-%m-%d') }}</td>
+          <td>{{ borrow.due_date.strftime('%Y-%m-%d') }}</td>
+          <td>
+            {% if borrow.returned %}
+              Returned
+            {% else %}
+              Borrowed
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
   
-  <div class="actions">
-    <button class="action-btn">Borrow</button>
-    <button class="action-btn">Return</button>
-  </div>
-
-  <div class="search-bar1">
-    <input type="text" placeholder="Search Books...">
-  </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Book Name</th>
-        <th>Author</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-
-    </tbody>
-  </table>
   <script>
     const popLogout = ()=>{                 
       const containerlogout=document.querySelector('.container-logout1')
@@ -46,5 +148,51 @@
       containerlogout.style.display='none'
     }
     
-    </script>
+    function showBorrowBooks(){
+      document.querySelector('.container-member').style.display = 'none';
+      document.querySelector('.container-member1').style.display = 'block';
+    }
+
+    function backToDefault() {
+      document.querySelector('.container-member').style.display = 'block';
+      document.querySelector('.container-member1').style.display = 'none';
+    }
+
+    const searchBooks = ()=>{
+      const input = document.getElementById('searchInput');
+      const filter = input.value.toLowerCase();
+      const table = document.querySelector('.table-member table');
+      const tr = table.getElementsByTagName('tr');
+
+      for (let i = 1; i < tr.length; i++) { 
+        const tdTitle = tr[i].getElementsByTagName('td')[0];
+        const tdAuthor = tr[i].getElementsByTagName('td')[1];
+
+        if (tdTitle || tdAuthor) {
+          const titleText = tdTitle.textContent || tdTitle.innerText;
+          const authorText = tdAuthor.textContent || tdAuthor.innerText;
+          const titleMatch = titleText.toLowerCase().includes(filter);
+          const authorMatch = authorText.toLowerCase().includes(filter);
+
+          if (filter === "") {
+            tr[i].style.display = "";
+            tdTitle.innerHTML = titleText;
+            tdAuthor.innerHTML = authorText;
+          } else if (titleMatch || authorMatch) {
+            tr[i].style.display = "";
+      
+            tdTitle.innerHTML = highlightText(titleText, filter);
+            tdAuthor.innerHTML = highlightText(authorText, filter);
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+
+    const highlightText = (text, filter) => {
+      const regex = new RegExp(`(${filter})`, "gi");
+      return text.replace(regex, '<span style="background-color: yellow;">$1</span>');
+    }
+  </script>
 {% endblock %}
