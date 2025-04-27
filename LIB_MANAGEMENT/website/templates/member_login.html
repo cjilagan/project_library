@@ -3,6 +3,11 @@
 
 {% block content %}
     <div class="header1">
+        <div class="logo-container">
+            <a href="{{ url_for('auth.login')}}">
+                <img src="{{ url_for('static', filename='images/Library.png') }}" alt="Library Logo" class="logo-img"> 
+            </a>
+        </div>
         <div class="right-container1">
             <div class="login-box1">
                 <h1>Member Login</h1>

@@ -1479,3 +1479,13 @@ form {
 #no-results.show {
   animation: fadeZoomIn 0.3s ease forwards;
 }
+
+.logo-container {
+  position: absolute;
+  top: 2rem;
+  left: 3rem;
+}
+
+.logo-img {
+  height: 12rem; /* adjust the size if you want */
+}
