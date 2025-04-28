@@ -14,8 +14,33 @@ def member_homepage():
 @views.route('/admin/homepage')
 def admin_homepage():
     members = User.query.filter_by(role='member').all()
-    books = Book.query.all() 
-    return render_template('admin_home.html', members=members, books=books)
+    books = Book.query.all()
+    borrow_requests = BorrowRequest.query.filter_by(status='pending').all() 
+    return render_template('admin_home.html', members=members, books=books, borrow_requests=borrow_requests)
+
+@views.route('/admin/accept_request/<int:request_id>', methods=['POST'])
+def accept_request(request_id):
+    request_record = BorrowRequest.query.get_or_404(request_id)
+    book = Book.query.get(request_record.book_id)
+
+    if book and book.available_copies > 0:
+        book.available_copies -= 1
+        borrow_record = BorrowRecord(user_id=request_record.user_id, book_id=request_record.book_id)
+        request_record.status = 'accepted'
+        db.session.add(borrow_record)
+        db.session.commit()
+        flash('Request accepted and book borrowed!', 'success')
+    else:
+        flash('Book not available.', 'error')
+    return redirect(url_for('views.admin_homepage'))
+
+@views.route('/admin/reject_request/<int:request_id>', methods=['POST'])
+def reject_request(request_id):
+    request_record = BorrowRequest.query.get_or_404(request_id)
+    request_record.status = 'rejected'
+    db.session.commit()
+    flash('Request rejected.', 'info')
+    return redirect(url_for('views.admin_homepage'))
 
 @views.route('/admin/delete_member/<int:member_id>', methods=['POST'])
 def delete_member(member_id):
@@ -107,7 +132,6 @@ def edit_book(book_id):
 @views.route('/borrow/<int:book_id>', methods=['POST'])
 def borrow_book(book_id):
     book = Book.query.get_or_404(book_id)
-
     borrowed_count = BorrowRecord.query.filter_by(user_id=current_user.id, returned=False).count()
     if borrowed_count >= 3:  
         flash('Borrow limit reached (3 books). Return a book first!', 'error')
@@ -127,4 +151,20 @@ def borrow_book(book_id):
     else:
         flash(f"Sorry, {book.title} is not available.", "error")
 
+    return redirect(url_for('views.member_homepage'))
+
+@views.route('/request_borrow/<int:book_id>', methods=['POST'])
+def request_borrow(book_id):
+    book = Book.query.get_or_404(book_id)
+    existing_request = BorrowRequest.query.filter_by(user_id=current_user.id, book_id=book_id, status='pending').first()
+    
+    if existing_request:
+        flash('You have already requested this book.', 'error')
+        return redirect(url_for('views.member_homepage'))
+    
+    new_request = BorrowRequest(user_id=current_user.id, book_id=book_id)
+    db.session.add(new_request)
+    db.session.commit()
+
+    flash('Borrow request sent! Please wait for admin approval.', 'success')
     return redirect(url_for('views.member_homepage'))

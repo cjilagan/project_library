@@ -54,3 +54,13 @@ class BorrowRecord(db.Model):
     def __init__(self, user_id, book_id):
         self.user_id = user_id
         self.book_id = book_id
+
+class BorrowRequest(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    book_id = db.Column(db.Integer, db.ForeignKey('book.id'), nullable=False)
+    request_date = db.Column(db.DateTime, default=datetime.utcnow)
+    status = db.Column(db.String(20), default='pending')  
+
+    user = db.relationship("User", backref="borrow_requests")
+    book = db.relationship("Book", backref="borrow_requests")
