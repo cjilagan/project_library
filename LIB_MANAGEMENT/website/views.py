@@ -1,17 +1,20 @@
 from flask import Blueprint, render_template, redirect, flash, request, url_for, session
-from flask_login import current_user
-from .models import User, Book, BorrowRecord
+from flask_login import current_user, login_required
+from .models import User, Book, BorrowRecord, BorrowRequest
 from .extensions import db, login_manager
 from .decorators import member_required, admin_required
 
 views = Blueprint('views', __name__)
 
 @views.route('/member/homepage')
+@login_required
 def member_homepage():
-    books = Book.query.all() 
-    return render_template('member_home.html', books=books)
+    books = Book.query.all()
+    borrowed_books = BorrowRecord.query.filter_by(user_id=current_user.id).all()
+    return render_template('member_home.html', books=books, borrowed_books=borrowed_books)
 
 @views.route('/admin/homepage')
+@login_required
 def admin_homepage():
     members = User.query.filter_by(role='member').all()
     books = Book.query.all()
@@ -131,15 +134,19 @@ def edit_book(book_id):
 
 @views.route('/borrow/<int:book_id>', methods=['POST'])
 def borrow_book(book_id):
+    if not current_user.is_authenticated:
+        flash('Please log in to borrow books.', 'error')
+        return redirect(url_for('auth.login'))  # adjust to your login page
+
     book = Book.query.get_or_404(book_id)
     borrowed_count = BorrowRecord.query.filter_by(user_id=current_user.id, returned=False).count()
+
     if borrowed_count >= 3:  
         flash('Borrow limit reached (3 books). Return a book first!', 'error')
         return redirect(url_for('views.member_homepage'))
     
     if book.available_copies > 0:
         book.available_copies -= 1
-
         borrowed = BorrowRecord(
             user_id=current_user.id,
             book_id=book.id

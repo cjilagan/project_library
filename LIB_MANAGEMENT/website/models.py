@@ -1,11 +1,12 @@
 from .extensions import db, bcrypt
 from datetime import datetime, timedelta
 from flask_jwt_extended import create_access_token
+from flask_login import UserMixin
 
 def default_due_date():
     return datetime.utcnow() + timedelta(days=14)
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)

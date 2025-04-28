@@ -1,6 +1,7 @@
 import os
 import sqlite3
 from flask import Blueprint, render_template, redirect, flash, request, url_for, session
+from flask_login import logout_user, login_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from .models import Admin, User
 from .extensions import db
@@ -45,6 +46,7 @@ def member_login():
         user = User.query.filter_by(email=email, role='member').first()
 
         if user and check_password_hash(user.password_hash, password):
+            login_user(user)
             flash('Logged in successfully!', category='success')
             return redirect(url_for('views.member_homepage'))
         else:
