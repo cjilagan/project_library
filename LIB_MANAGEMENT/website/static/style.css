@@ -1251,6 +1251,12 @@ form {
     border-radius: 5px;
   }
 
+  .logout-btns:hover{
+    background-color: #754619;
+    transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px #69370d, 0 0 10px #693a04;
+  }
+
   .logout-btns {
     position: relative;
     top: -44px;
@@ -1269,6 +1275,12 @@ form {
     margin: 20px 0;
   }
   
+  .actions .action-btn:hover{
+    background-color: #754619;
+    transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px #69370d, 0 0 20px #693a04;
+  }
+
   .actions .action-btn.active{
     background-color: #3a230d;
   }
@@ -1681,4 +1693,25 @@ form {
     justify-content: center;
     gap: 30px;
   }
+  }
+
+  .button-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .badge {
+    position: absolute;
+    top: -0.5rem;
+    right: 0.5rem;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    font-size: 0.75em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
   }

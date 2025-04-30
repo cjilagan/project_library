@@ -10,8 +10,9 @@ views = Blueprint('views', __name__)
 @login_required
 def member_homepage():
     books = Book.query.all()
-    borrowed_books = BorrowRecord.query.filter_by(user_id=current_user.id).all()
-    return render_template('member_home.html', books=books, borrowed_books=borrowed_books)
+    borrowed_books = BorrowRecord.query.filter_by(user_id=current_user.id, returned=False).all()
+    borrowed_count = len(borrowed_books)
+    return render_template('member_home.html', books=books, borrowed_books=borrowed_books, borrowed_count=borrowed_count)
 
 @views.route('/admin/homepage')
 @login_required
@@ -175,3 +176,30 @@ def request_borrow(book_id):
 
     flash('Borrow request sent! Please wait for admin approval.', 'success')
     return redirect(url_for('views.member_homepage'))
+
+@views.route('/return_book/<int:record_id>', methods=['POST'])
+@login_required
+def return_book(record_id):
+    record = BorrowRecord.query.get_or_404(record_id)
+    
+    if record.user_id != current_user.id or record.returned:
+        return {"success": False, "error": "Invalid request"}, 400
+
+    record.returned = True
+    record.book.available_copies += 1  
+    db.session.commit()
+
+    return {"success": True}
+
+@views.route('/get_borrowed_books', methods=['GET'])
+@login_required
+def get_borrowed_books():
+    borrowed = BorrowRecord.query.filter_by(user_id=current_user.id, returned=False).all()
+    data = []
+    for rec in borrowed:
+        data.append({
+            'record_id': rec.id,
+            'title': rec.book.title,
+            'due_date': rec.due_date.strftime('%Y-%m-%d')
+        })
+    return {"books": data}

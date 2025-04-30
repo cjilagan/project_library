@@ -123,7 +123,12 @@
 
     <div class="actions">
       <button class="action-btn" onclick="showBorrowBooks()">Borrow</button>
-      <button class="action-btn active" onclick="popReturn()">Return</button>      
+      <div class="button-container">
+        <button class="action-btn active" onclick="popReturn()">
+          Return
+        </button>
+        <span class="badge" id="borrowBadge">{{ borrowed_count }}</span>
+      </div>        
     </div>
 
     <div class="search-bar-member" style="margin-top: 20px;">
@@ -188,32 +193,83 @@
     }
     
 
-  let isBorrowActive = false;
-  let isReturnActive = false;
+    let isBorrowActive = false;
+    let isReturnActive = false;
 
-  function showBorrowBooks() {
-   if (!isBorrowActive) {
-      document.querySelector('.container-member').style.display = 'none';
-      document.querySelector('.container-member1').style.display = 'block';
-      document.querySelector('.container-member2').style.display = 'none';
-      isBorrowActive = true;
-      isReturnActive = false;
-    } else {
-      backToDefault();
+    function showBorrowBooks() {
+      if (!isBorrowActive) {
+        document.querySelector('.container-member').style.display = 'none';
+        document.querySelector('.container-member1').style.display = 'block';
+        document.querySelector('.container-member2').style.display = 'none';
+        isBorrowActive = true;
+        isReturnActive = false;
+      } else {
+        backToDefault();
+      }
     }
-  }
 
-  function popReturn() {
-    if (!isReturnActive) {
-      document.querySelector('.container-member').style.display = 'none';
-      document.querySelector('.container-member1').style.display = 'none';
-      document.querySelector('.container-member2').style.display = 'block';
-      isReturnActive = true;
-      isBorrowActive = false;
-    } else {
-      backToDefault();
+    function popReturn() {
+      if (!isReturnActive) {
+        document.querySelector('.container-member').style.display = 'none';
+        document.querySelector('.container-member1').style.display = 'none';
+        document.querySelector('.container-member2').style.display = 'block';
+        isReturnActive = true;
+        isBorrowActive = false;
+
+    // ✅ Load borrowed books from server
+        fetch('/get_borrowed_books')
+          .then(res => res.json())
+          .then(data => {
+            const tbody = document.querySelector('.table-member2 tbody');
+            tbody.innerHTML = '';
+
+            if (data.books.length === 0) {
+              const row = document.createElement('tr');
+              row.innerHTML = `<td colspan="3">No borrowed books to return.</td>`;
+              tbody.appendChild(row);
+              return;
+            }
+
+            const today = new Date().toISOString().split('T')[0];
+
+            data.books.forEach(book => {
+              const tr = document.createElement('tr');
+              const isOverdue = book.due_date < today;
+
+              tr.innerHTML = `
+                <td>${book.title}</td>
+                <td style="color: ${isOverdue ? 'red' : 'inherit'}">${book.due_date}${isOverdue ? ' (Overdue)' : ''}</td>
+                <td><button onclick="returnBook(${book.record_id}, this)">Return</button></td>
+              `;
+              tbody.appendChild(tr);
+            });
+          });
+      } else {
+        backToDefault();
+      }
     }
-  }
+
+    function returnBook(recordId, btn) {
+      if (!confirm('Are you sure you want to return this book?')) return;
+
+      fetch(`/return_book/${recordId}`, {
+        method: 'POST'
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+         const row = btn.closest('tr');
+          row.remove();
+          alert('Book returned successfully!');
+
+          const badge = document.getElementById('borrowBadge');
+          const count = parseInt(badge.textContent);
+          badge.textContent = count > 1 ? count - 1 : '0';
+        } else {
+          alert('Failed to return book.');
+        }
+      });
+    }
 
 function backToDefault() {
   document.querySelector('.container-member').style.display = 'block';
@@ -259,5 +315,6 @@ function backToDefault() {
       const regex = new RegExp(`(${filter})`, "gi");
       return text.replace(regex, '<span style="background-color: yellow;">$1</span>');
     }
+
   </script>
 {% endblock %}
