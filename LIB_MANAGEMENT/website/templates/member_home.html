@@ -18,7 +18,11 @@
 
     <div class="actions">
       <button class="action-btn" onclick="showBorrowBooks()">Borrow</button>
-      <button class="action-btn" onclick="popReturn()">Return</button>
+      <div class="button-container">
+        <button class="action-btn" onclick="popReturn()">Return</button>
+        <span class="badge" id="borrowBadge">{{ borrowed_count }}</span>
+      </div>
+      <button class="action-btn" onclick="showMyBooks()">My Books</button>
     </div>
 
     <div class="search-bar-member" style="margin-top: 20px;">
@@ -69,7 +73,11 @@
 
     <div class="actions">
       <button class="action-btn active" onclick="showBorrowBooks()">Borrow</button>
-      <button class="action-btn" onclick="popReturn()">Return</button>      
+      <div class="button-container">
+        <button class="action-btn" onclick="popReturn()">Return</button>
+        <span class="badge" id="borrowBadge">{{ borrowed_count }}</span>
+      </div>
+      <button class="action-btn" onclick="showMyBooks()">My Books</button>
     </div>
 
     <div class="search-bar-member" style="margin-top: 20px;">
@@ -90,7 +98,7 @@
           <tr>
             <td>{{ book.title }}</td>
             <td>{{ book.author }}</td>
-            <td>
+            <td class="request_button">
               {% if book.available_copies > 0 %}
                 Available ({{ book.available_copies }} copies)
                 <form action="{{ url_for('views.request_borrow', book_id=book.id) }}" method="post" style="display:inline;">
@@ -110,7 +118,7 @@
   <div class="container-member2" style="display: none;">
     <div class="header4">
       <h1>Library Management System</h1>
-      <div class="container-logout2" style="display: none;">
+      <div class="container-logout1" style="display: none;">
         <h1>Are you sure?</h1>
         <form action="{{ url_for('auth.logout') }}" method="post">
           <button class="logout-btn" type="submit">Logout</button>
@@ -124,11 +132,10 @@
     <div class="actions">
       <button class="action-btn" onclick="showBorrowBooks()">Borrow</button>
       <div class="button-container">
-        <button class="action-btn active" onclick="popReturn()">
-          Return
-        </button>
+        <button class="action-btn active" onclick="popReturn()">Return</button>
         <span class="badge" id="borrowBadge">{{ borrowed_count }}</span>
-      </div>        
+      </div>
+      <button class="action-btn" onclick="showMyBooks()">My Books</button>
     </div>
 
     <div class="search-bar-member" style="margin-top: 20px;">
@@ -152,16 +159,42 @@
   </div>
 
   <div class="borrowed-books" style="display: none;">
-    <h1>My Borrowed Books</h1>
+    <div class="header5">
+      <h1>Library Management System</h1>
+      <div class="container-logout1" style="display: none;">
+        <h1>Are you sure?</h1>
+        <form action="{{ url_for('auth.logout') }}" method="post">
+          <button class="logout-btn" type="submit">Logout</button>
+          <button class="cancel" type="button" onclick="popCancelLogout()">Cancel</button>
+        </form>
+      </div>
+    </div>
+
+    <button class="logout-btns" onclick="popLogout()">Logout</button>
+
+    <div class="actions">
+      <button class="action-btn" onclick="showBorrowBooks()">Borrow</button>
+      <div class="button-container">
+        <button class="action-btn" onclick="popReturn()">Return</button>
+        <span class="badge" id="borrowBadge">{{ borrowed_count }}</span>
+      </div>
+      <button class="action-btn active" onclick="showMyBooks()">My Books</button>
+    </div>
+
+    <div class="search-bar-member" style="margin-top: 20px;">
+      <input type="text" id="searchInput" placeholder="Search Books..." onkeyup="searchBooks()">
+    </div>
+    
+    <div class="borrowed-books-table">
       <table>
-      <thead>
-        <tr>
-          <th>Book Title</th>
-          <th>Borrow Date</th>
-          <th>Due Date</th>
-          <th>Status</th>
-        </tr>
-      </thead>
+        <thead>
+          <tr>
+            <th>Book Title</th>
+            <th>Borrow Date</th>
+            <th>Due Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
       <tbody>
         {% for borrow in borrowed_books %}
         <tr>
@@ -180,29 +213,47 @@
       </tbody>
     </table>
   </div>
+  </div>
   
   <script>
-    const popLogout = ()=>{                 
-      const containerlogout=document.querySelector('.container-logout1')
-      containerlogout.style.display='block'
-    }
+    const popLogout = () => {
+      const containerLogout = document.querySelector('.container-logout1');
+      containerLogout.style.display = 'block';
+    };
 
-    const popCancelLogout = ()=>{
-      const containerlogout=document.querySelector('.container-logout1')
-      containerlogout.style.display='none'
-    }
+    const popCancelLogout = () => {
+      const containerLogout = document.querySelector('.container-logout1');
+      containerLogout.style.display = 'none';
+    };
     
 
     let isBorrowActive = false;
     let isReturnActive = false;
+    let isMyBooksActive = false;
 
     function showBorrowBooks() {
       if (!isBorrowActive) {
         document.querySelector('.container-member').style.display = 'none';
         document.querySelector('.container-member1').style.display = 'block';
         document.querySelector('.container-member2').style.display = 'none';
+        document.querySelector('.borrowed-books').style.display = 'none';
         isBorrowActive = true;
         isReturnActive = false;
+      } else {
+        backToDefault();
+      }
+    }
+
+    function showMyBooks() {
+      if (!isMyBooksActive) {
+        document.querySelector('.container-member').style.display = 'none';
+        document.querySelector('.container-member1').style.display = 'none';
+        document.querySelector('.container-member2').style.display = 'none';
+        document.querySelector('.borrowed-books').style.display = 'block';
+
+        isBorrowActive = false;
+        isReturnActive = false;
+        isMyBooksActive = true;
       } else {
         backToDefault();
       }
@@ -213,6 +264,7 @@
         document.querySelector('.container-member').style.display = 'none';
         document.querySelector('.container-member1').style.display = 'none';
         document.querySelector('.container-member2').style.display = 'block';
+        document.querySelector('.borrowed-books').style.display = 'none';
         isReturnActive = true;
         isBorrowActive = false;
 
@@ -239,11 +291,31 @@
               tr.innerHTML = `
                 <td>${book.title}</td>
                 <td style="color: ${isOverdue ? 'red' : 'inherit'}">${book.due_date}${isOverdue ? ' (Overdue)' : ''}</td>
-                <td><button onclick="returnBook(${book.record_id}, this)">Return</button></td>
+                <td>
+                  <button class="return-btn" onclick="returnBook(${book.record_id}, this)" title="Click to return this book">
+                    <i class="fas fa-undo-alt" style="margin-right: 6px;"></i>Return
+                  </button>
+                </td>
               `;
               tbody.appendChild(tr);
             });
           });
+      } else {
+        backToDefault();
+      }
+    }
+
+    function showMyBooks() {
+      const isMyBooksVisible = document.querySelector('.borrowed-books').style.display === 'block';
+
+      if (!isMyBooksVisible) {
+        document.querySelector('.container-member').style.display = 'none';
+        document.querySelector('.container-member1').style.display = 'none';
+        document.querySelector('.container-member2').style.display = 'none';
+        document.querySelector('.borrowed-books').style.display = 'block';
+
+        isBorrowActive = false;
+        isReturnActive = false;
       } else {
         backToDefault();
       }
@@ -271,13 +343,16 @@
       });
     }
 
-function backToDefault() {
-  document.querySelector('.container-member').style.display = 'block';
-  document.querySelector('.container-member1').style.display = 'none';
-  document.querySelector('.container-member2').style.display = 'none';
-  isBorrowActive = false;
-  isReturnActive = false;
-}
+    function backToDefault() {
+      document.querySelector('.container-member').style.display = 'block';
+      document.querySelector('.container-member1').style.display = 'none';
+      document.querySelector('.container-member2').style.display = 'none';
+      document.querySelector('.borrowed-books').style.display = 'none';
+
+      isBorrowActive = false;
+      isReturnActive = false;
+      isMyBooksActive = false;
+    }
 
     const searchBooks = ()=>{
       const input = document.getElementById('searchInput');
