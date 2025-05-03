@@ -2,44 +2,29 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-<div class="title">
-    <h1>Library Hub</h1>
-</div>
-
-<div class="header">
-    <div class="right-container">
-        <div class="login-box">
-            <div class="buttonss">
-                <div>
-                    <a href="{{ url_for('auth.member_login') }}" class="btn-link">
-                        <button>Login - Member</button>
-                    </a>
-                </div>
-                <div>
-                    <a href="{{ url_for('auth.admin_login') }}" class="btn-link">
-                        <button>Login - Admin</button>
-                    </a>
-                </div>
-            </div>
-            
-
-            <div class="linkss"><span>New member? <a href="{{ url_for('auth.member_signup') }}" class="signup-text">Sign up here</a></span>
-           
-                <span>New admin? <a href="{{ url_for('auth.admin_signup') }}" class="signup-text">Create Admin Account</a></span></div>
-        </div>
-
-
-       
+<nav class="navbar">
+    <div class="nav-left">
+        <h1 class="nav-title">Library Hub</h1>
     </div>
+    <div class="nav-right">
+        <a href="#" class="circle-button" title="About">About</a>
+        <a href="{{ url_for('auth.member_login') }}" class="circle-button" title="Member Login">Login - Member</a>
+        <a href="{{ url_for('auth.admin_login') }}" class="circle-button" title="Admin Login">Login - Admin</a>
+    </div>
+</nav>
 
-
+<section class="main-section">
     <div class="main">
-        <div class="divider"></div>
-        <h1>Library Hub</h1>
-        <p>An all-in-one digital solution to efficiently manage library operations from tracking </p>
+        <h2>Welcome to Library Hub</h2>
+        <p>An all-in-one digital solution to efficiently manage library operations from tracking</p>
         <p>book inventory and member registrations to handling borrow and return transactions and overdue alerts.</p>
         <p>Designed for simplicity, speed, and seamless administration, this system brings modern convenience to traditional libraries.</p>
         <p>Whether you're a student, librarian, or administrator, managing resources has never been easier!</p>
+
+        <div class="linkss">
+        <p>New member? <a href="{{ url_for('auth.member_signup') }}" class="signup-text">Sign up here</a></p>
+        <p>New admin? <a href="{{ url_for('auth.admin_signup') }}" class="signup-text">Create Admin Account</a></p>
+        </div>
     </div>
-</div>
+</section>
 {% endblock %}

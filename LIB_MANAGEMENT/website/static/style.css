@@ -8,96 +8,56 @@ body {
     text-align: center;
 }
 
-.title{
-    font-family: 'Brush Script MT', cursive;
-    font-size: 32px;
-    text-align: left;
-    padding: 20px 50px;
-    color: black;
-    position: relative;
-    top: -20px;
-}
-.header {
-    font-family: 'Brush Script MT', cursive;
-    font-size: 35px;
-    text-align: left;
-    padding: 20px 50px;
-    color: black;
-    position: absolute;
-    top: 0;
-    left: 0;
+.navbar {
+  display: flex;
+  background-color: #6e2f05;
+  background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  color: #fff;
 }
 
-.header span {
-    display: block;
-    margin-left: 60px;
+.nav-title {
+  margin: 0;
+  font-size: 1.5rem;
 }
 
-.login-box {
-    background: url('https://i.pinimg.com/736x/8e/cc/85/8ecc858ee6233721a999a1adb5be981b.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 15px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px   ;
-    border-radius: 10px;
-    position: absolute;
-    top: 20px;
-    right: 50px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    z-index: 2;
-    position: absolute;
-    top: 20px;
-    right: 50px;
-
-
-        .buttonss, .linkss{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-around;
-        }
-
-        .linkss{
-            font-size: 1.2rem;
-        }
-
-
-    }
-    
-
-
-.login-box button {
-    padding: 10px 20px;
-    background: #2c1a0b;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    margin: 5px;
-    cursor: pointer;
-    transition: 0.3s;
+.nav-right{
+  display: flex;
+  gap: 1rem;
 }
 
-.login-box button:hover {
-    background: #3f2a17;
+.nav-link {
+  margin-left: 1rem;
+  color: white;
+  text-decoration: none;
 }
 
-.new-user-container {
-    margin-top: 10px;
-    font-size: 12px;
-    line-height: 1.4;
-    text-align: center;
-    color: black;
+.nav-link:hover {
+  text-decoration: underline;
 }
 
-.new-user-container a {
-    color: red;
-    text-decoration: none;
-    font-weight: normal;
+.circle-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px; /* pill shape */
+  font-weight: bold;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
+
+.circle-button:hover {
+  background-color: #ce6209;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
 
 .header1 {
     display: flex;
