@@ -4,6 +4,7 @@
 {% block content %}
 <nav class="navbar">
     <div class="nav-left">
+        <img src="{{ url_for('static', filename='images/Library.png') }}" alt="logo" class="main-logo">
         <h1 class="nav-title">Library Hub</h1>
     </div>
     <div class="nav-right">
@@ -11,20 +12,28 @@
         <a href="{{ url_for('auth.member_login') }}" class="circle-button" title="Member Login">Login - Member</a>
         <a href="{{ url_for('auth.admin_login') }}" class="circle-button" title="Admin Login">Login - Admin</a>
     </div>
+    <div class="divider"></div>
 </nav>
 
 <section class="main-section">
     <div class="main">
-        <h2>Welcome to Library Hub</h2>
-        <p class="description">An all-in-one digital solution to efficiently manage library operations from tracking 
-        book inventory and member registrations to handling borrow and return transactions and overdue alerts.</p>
+        <div class="main-description">
+            <h2 class="main-title">Welcome to Library Hub</h2>
+            <p class="description">An all-in-one digital solution to efficiently manage library operations from tracking 
+            book inventory and member registrations to handling borrow and return transactions and overdue alerts.</p>
         <!--<p>Designed for simplicity, speed, and seamless administration, this system brings modern convenience to traditional libraries.</p>
         <p>Whether you're a student, librarian, or administrator, managing resources has never been easier!</p>-->
+        </div>
+        <div class="main-image-wrapper">
+            <img src="{{ url_for('static', filename='images/library-book.png') }}" alt="book" class="main-image">
+        </div>
+    </div>
+</section>
 
-        <div class="linkss">
+<section class="signup-section">
+    <div class="linkss">
         <p>New member? <a href="{{ url_for('auth.member_signup') }}" class="signup-text">Sign up here</a></p>
         <p>New admin? <a href="{{ url_for('auth.admin_signup') }}" class="signup-text">Create Admin Account</a></p>
-        </div>
     </div>
 </section>
 {% endblock %}

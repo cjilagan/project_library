@@ -2,9 +2,9 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Georgia', cursive;
-    background-image: url('https://i.pinimg.com/736x/01/13/f9/0113f94f11c47c63ce2221645121b863.jpg');
-    background-size: cover;
     background-attachment: fixed;
+    background-color: #6e2f05;
+    background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
     text-align: center;
 }
 
@@ -18,9 +18,80 @@ body {
   color: #fff;
 }
 
+.main-logo{
+  height: 3.5rem;
+  width: auto;
+}
+
+.main-section {
+  background-color: #6e2f05;
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  background-repeat: repeat;
+  background-size: auto;
+  padding: 1rem; 
+  min-height: 100vh;
+}
+
+.main-section .main{
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  color: #ffffff;
+  justify-content: space-between;
+}
+
+.main-description {
+  position: relative;
+  left: 60px;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 1.5rem;
+  border-radius: 10px;
+  color: #fff; 
+  max-width: 600px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.main-section .main-description .main-title{
+  font-size: 3rem;
+  color: #fce300;
+  font-family: "Playwrite RO", cursive;
+}
+
+.main-section .main-description .description{
+  position: relative;
+  left: 20px;
+  max-width: 90%;
+  margin: 24px 0 40px;
+  font-size: 1.5rem;
+}
+
+.divider {
+  position: absolute;
+  top: 95px;
+  left: 0.3px;
+  margin: auto;
+  width: 100%;
+  height: 20px;
+  background: url('https://www.transparenttextures.com/patterns/white-texture.png'); 
+  background-color: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.signup-section{
+  background-color: #9c4105;
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  height: 80vh;
+}
+
 .nav-title {
   margin: 0;
   font-size: 1.5rem;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center; 
+  gap: 0.75rem; 
 }
 
 .nav-right{
@@ -37,6 +108,7 @@ body {
 .nav-link:hover {
   text-decoration: underline;
 }
+
 
 .circle-button {
   display: inline-flex;
@@ -132,17 +204,6 @@ body {
     font-size: 24px;
 }
 
-.divider {
-    position: relative;
-    bottom: 6rem;
-    right: 50px;
-    width: 110%;
-    height: 25px;
-    background: url('https://www.transparenttextures.com/patterns/white-texture.png'); 
-    background-color: white;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-    
-}
 
 
 .container_mt-5 {
