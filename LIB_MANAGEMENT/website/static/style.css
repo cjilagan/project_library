@@ -144,15 +144,7 @@ body {
     
 }
 
-.main {
-    margin-top: 15rem;
-}
 
-.main h1{
-    position: relative;
-    bottom: 8rem;
-    left: 35rem;
-}
 .container_mt-5 {
     max-width: 600px;
     margin: 50px auto;
