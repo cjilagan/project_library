@@ -169,9 +169,77 @@ body {
 }
 
 .signup-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #9c4105;
   background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
   height: 80vh;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.linkss{
+  max-width: 800px;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2.5px);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 3rem 2rem;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  top: -0.5rem;
+}
+
+.signup-choice-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #fce300;
+}
+
+.signup-choice-subtitle {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+.account-options {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.account-card {
+  background-color: #fafafa;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  width: 260px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.account-card:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+}
+
+.account-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1rem;
+}
+
+.member-card {
+  border-top: 4px solid #3498db;
+}
+
+.admin-card {
+  border-top: 4px solid #e67e22;
 }
 
 .about-us-section{

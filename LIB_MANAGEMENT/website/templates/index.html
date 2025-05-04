@@ -49,8 +49,20 @@
 
 <section id="signup" class="signup-section">
     <div class="linkss">
-        <p>New member? <a href="{{ url_for('auth.member_signup') }}" class="signup-text">Sign up here</a></p>
-        <p>New admin? <a href="{{ url_for('auth.admin_signup') }}" class="signup-text">Create Admin Account</a></p>
+        <h2 class="signup-choice-title">Create an Account</h2>
+        <p class="signup-choice-subtitle">Choose your account type to continue:</p>
+        <div class="account-options">
+            <a href="{{ url_for('auth.member_signup') }}" class="account-card member-card">
+                <img src="{{ url_for('static', filename='images/member-icon.jpg') }}" alt="Member Icon" class="account-icon">
+                <h3>Member</h3>
+                <p>Access books, track your loans, and manage your account.</p>
+            </a>
+            <a href="{{ url_for('auth.admin_signup') }}" class="account-card admin-card">
+                <img src="{{ url_for('static', filename='images/admin-icon.png') }}" alt="Admin Icon" class="account-icon">
+                <h3>Admin</h3>
+                <p>Manage inventory, users, and system settings.</p>
+            </a>
+        </div>
     </div>
 </section>
 
