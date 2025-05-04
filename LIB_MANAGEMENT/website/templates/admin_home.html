@@ -102,12 +102,12 @@
             <td>{{ book.author }}</td>
             <td>{{ 'Available' if book.available_copies > 0 else 'Unavailable'}}</td>
             <td>
-              <a href="{{ url_for('views.edit_book', book_id=book.id) }}" class="btn btn-warning btn-sm">
+              <a href="{{ url_for('views.edit_book', book_id=book.id) }}" class="btn-manage">
                 <i class="fas fa-edit"></i> Edit
               </a> 
 
               <form method="POST" action="{{ url_for('views.delete_book', book_id=book.id) }}" style="display:inline;">
-                <button type="submit" class="btn btn-danger btn-sm">
+                <button type="submit" class="btn-manage1">
                   <i class="fas fa-trash-alt"></i> Delete
                 </button>
               </form>
@@ -128,19 +128,21 @@
     </div>
   </div>
 
-  <form class="book-form" id="addBookForm" action="{{ url_for('views.add_book') }}" method="POST" style="display:none;">
-    <button class="back-button" type="button" onclick="document.getElementById('addBookForm').style.display = 'none';">
-      <i class="fas fa-arrow-left"></i>
-    </button>
-    <h1>Add Books</h1>
+  <div class="add-books-form">
+    <form class="book-form" id="addBookForm" action="{{ url_for('views.add_book') }}" method="POST" style="display:none;">
+      <button class="back-button" type="button" onclick="document.getElementById('addBookForm').style.display = 'none';">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1>Add Books</h1>
     
-    <input type="text" name="title" placeholder="Book Title..." required>
-    <input type="text" name="author" placeholder="Book Author..." required>
-    <input type="text" name="isbn" placeholder="ISBN" required>
-    <input type="number" name="available_copies" placeholder="Available Copies" value="1" min="1">
+      <input type="text" name="title" placeholder="Book Title..." required>
+      <input type="text" name="author" placeholder="Book Author..." required>
+      <input type="text" name="isbn" placeholder="ISBN" required>
+      <input type="number" name="available_copies" placeholder="Available Copies" value="1" min="1">
     
-    <button type="submit">Confirm</button>
-  </form>
+      <button type="submit">Confirm</button>
+    </form>
+  </div>
 
   <div class="container2" style="display:none;">
     <header>
@@ -186,11 +188,11 @@
             <td>{{ member.phone_number }}</td>
             <td>
               <div class="manage-buttons">
-                <a href="{{ url_for('views.edit_member', member_id=member.id) }}" class="btn btn-warning btn-sm">
+                <a href="{{ url_for('views.edit_member', member_id=member.id) }}" class="btn-manage">Edit
                   <i class="fas fa-edit"></i>
                 </a> 
                 <form method="POST" action="{{ url_for('views.delete_member', member_id=member.id) }}">
-                  <button type="submit" class="btn btn-danger btn-sm">
+                  <button type="submit" class="btn-manage1">Delete
                     <i class="fas fa-trash-alt"></i>
                   </button>
                 </form>
@@ -316,10 +318,10 @@
               <td>{{ request.request_date.strftime('%Y-%m-%d') }}</td>
               <td>
                 <form action="{{ url_for('views.accept_request', request_id=request.id) }}" method="post" style="display:inline;">
-                  <button type="submit">Accept</button>
+                  <button type="submit" class="btn-manage2">Accept</button>
                 </form>
                 <form action="{{ url_for('views.reject_request', request_id=request.id) }}" method="post" style="display:inline;">
-                  <button type="submit">Reject</button>
+                  <button type="submit" class="btn-manage1">Reject</button>
                 </form>
               </td>
             </tr>
