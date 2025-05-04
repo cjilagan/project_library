@@ -11,7 +11,7 @@
     </div>
     <div class="nav-right">
         <a href="#" id="aboutBtn" class="circle-button" title="About">About</a>
-        <a href="#" id="signupBtn" class="circle-button" title="Signup">Don't Have an Account?</a>
+        <a href="#" id="signupBtn" class="circle-button" title="Signup">Get Started</a>
         <a href="{{ url_for('auth.member_login') }}" class="circle-button" title="Member Login">Login - Member</a>
         <a href="{{ url_for('auth.admin_login') }}" class="circle-button" title="Admin Login">Login - Admin</a>
     </div>
@@ -44,8 +44,15 @@
             <img src="{{ url_for('static', filename='images/library-book.png') }}" alt="book" class="main-image">
         </div>
 
-    
   </section>
+
+<section class="main-phrase-section">
+    <div class="main-phrase-container fade-in">
+        <h1 class="main-title">Manage Your Library, Smarter</h1>
+        <p class="main-subtitle">Powerful tools for members and admins to manage books, track usage, and simplify library workflows.</p>
+    </div>
+    <div class="circle fade-in"></div>
+</section>
 
 <section id="signup" class="signup-section">
     <div class="linkss">
@@ -96,5 +103,20 @@
         e.preventDefault();
         document.getElementById("signup").scrollIntoView({ behavior: "smooth" });
     });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const faders = document.querySelectorAll('.fade-in');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        faders.forEach(fader => observer.observe(fader));
+        });
 </script>
 {% endblock %}
