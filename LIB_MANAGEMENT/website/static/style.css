@@ -327,6 +327,12 @@ body {
   height: 150vh;
 }
 
+.testi-section{
+  background-color: #9c4105;
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  height: 150vh;
+}
+
 .nav-title {
   margin: 0;
   font-size: 1.5rem;

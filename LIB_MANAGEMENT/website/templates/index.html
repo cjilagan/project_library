@@ -10,6 +10,7 @@
         </a>
     </div>
     <div class="nav-right">
+        <a href="#" id="testiBtn" class="circle-button" title="testimonials">Testimonials</a>
         <a href="#" id="aboutBtn" class="circle-button" title="About">About</a>
         <a href="#" id="signupBtn" class="circle-button" title="Signup">Get Started</a>
         <a href="{{ url_for('auth.member_login') }}" class="circle-button" title="Member Login">Login - Member</a>
@@ -80,6 +81,12 @@
     </div>
 </section>
 
+<section id="testimonials" class="testi-section">
+    <div class="testi-main">
+
+    </div>
+</section>
+
 <script>
     const logo = document.querySelector(".main-logo");
     document.getElementById("homeBtn").addEventListener("click", function(e) {
@@ -93,6 +100,11 @@
     document.getElementById("homeBtn").addEventListener("click", function(e) {
         e.preventDefault();
         document.getElementById("main").scrollIntoView({ behavior: "smooth" });
+        });
+
+    document.getElementById("testiBtn").addEventListener("click", function(e) {
+        e.preventDefault();
+        document.getElementById("testimonials").scrollIntoView({ behavior: "smooth" });
         });
 
     document.getElementById("aboutBtn").addEventListener("click", function(e) {
