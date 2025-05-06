@@ -449,6 +449,7 @@ body {
 }
 .admin-section {
   max-width: 1000px;
+  min-height: 180vh;
   margin: 4rem auto;
   padding: 0 1.5rem;
   color: #fff;
@@ -482,6 +483,27 @@ body {
   flex: 1 1 250px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   transition: transform 0.2s ease;
+  .book-manage{
+    margin-right: 0.5rem;
+    height: 10rem;
+    width: 10rem;
+  }
+  .user-manage{
+    margin-right: 0.5rem;
+    height: 10rem;
+    width: 10rem;
+  }
+  .request-icon{
+    margin-right: 0.5rem;
+    height: 10rem;
+    width: 10rem;
+  }
+  .admin-feature-fonts{
+    font-family: "Raleway", sans-serif;
+  }
+  h4{
+    font-family: "Raleway", sans-serif;
+  }
 }
 
 .admin-feature:hover {
