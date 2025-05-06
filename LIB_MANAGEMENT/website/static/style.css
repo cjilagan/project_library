@@ -2353,3 +2353,52 @@ form {
   .return-btn:hover {
     background-color: #572e00;
   }
+
+  .testimonials-section {
+    padding: 50px 0 100px;
+  }
+  
+  .testimonials-section .testimonials {
+    display: flex;
+    padding: 35px;
+    text-align: center;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+    justify-content: center;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+  
+
+  .testimonials-section .testimonials .user-image {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 50px;
+    border-radius: 50%;
+  }
+
+  .testimonials-section .testimonials .name {
+    margin-bottom: 16px;
+    font-size: medium;
+  }
+  .testimonials-section .testimonials .feedback {
+    line-height: 25px;   
+  }
+
+  .testimonials-section .swiper-pagination-bullet {
+    width: 15px;
+    height: 15px;
+    opacity: 1;
+    background: var(--secondary-color);
+  }
+
+  .testimonials-section .swiper-slide-button:hover {
+    color: var(--secondary-color);
+    transition: 0.3s ease;
+  }
+
+  .testimonials-section .swiper-slide:hover {
+    color: var(--primary-color);
+  }
