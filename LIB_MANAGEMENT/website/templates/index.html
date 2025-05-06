@@ -77,11 +77,65 @@
 
 <section id="about" class="about-us-section">
     <div class="about-us-main">
-      <div class="about-image-wrapper">
-        <img src="{{ url_for('static', filename='images/book-shelves.jpg') }}" alt="book background" class="book-shelves">
-        <h2 class="about-us-title">About Library Hub</h2>
-      </div>
-    </div>
+        <div class="about-image-wrapper">
+            <div class="overlay"></div>
+            <img src="{{ url_for('static', filename='images/book-shelves.jpg') }}" alt="book background" class="book-shelves">
+            <h2 class="about-us-title">About Library Hub</h2>
+        </div>
+        <div class="about-description">
+            <div class="about-us-intro">
+                <p class="about-intro">
+                <i class="fas fa-lightbulb"></i>
+                Library Hub was built out of a simple idea: to make library tasks easier, faster, and more organized.
+                </p>
+            </div>
+          
+        <div class="about-features">
+            <div class="feature">
+                <img src="{{url_for('static', filename='images/book-icon.png')}}" alt="book icon" class="book-icon">
+                <p class="feature-fonts">Keep track of books effortlessly</p>
+            </div>
+
+            <div class="feature">
+                <img src="{{url_for('static', filename='images/register-icon.png')}}" alt="register icon" class="register-icon">
+                <p class="feature-fonts">Register and manage members</p>
+            </div>
+
+            <div class="feature">
+                <img src="{{url_for('static', filename='images/notif-icon.png')}}" alt="notification icon" class="notif-icon">
+                <p class="feature-fonts">Send overdue alerts automatically</p>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <div class="about-us-admin">
+                <p class="admin-heading">
+                <i class="fas fa-user-shield"></i>
+                Admins have full control over the Library Hub. From managing the book collection to handling 
+                user accounts and processing borrow requests, all tools are built for speed and simplicity.
+                </p>
+            </div>
+             
+            <div class="admin-features">
+                <div class="admin-feature">
+                    <i class="fas fa-book-medical"></i>
+                    <h4>Book Management</h4>
+                    <p>Add, edit, or delete books. Instantly check availability to ensure accurate inventory.</p>
+                </div>
+                <div class="admin-feature">
+                    <i class="fas fa-users-cog"></i>
+                    <h4>User Management</h4>
+                    <p>View all registered members, update their info, or remove accounts when needed.</p>
+                </div>
+                <div class="admin-feature">
+                    <i class="fas fa-hand-holding"></i>
+                    <h4>Borrow Requests</h4>
+                    <p>Approve or reject book borrow requests in real time for smooth circulation.</p>
+                </div>
+            </div>
+        </div>
+              
+    </div>          
   </section>
   
 

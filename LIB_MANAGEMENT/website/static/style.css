@@ -325,15 +325,13 @@ body {
   position: relative;
   background-color: #9c4105;
   background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
-  height: 150vh;
+  min-height: 250vh;
 }
 
 .about-us-section .book-shelves{
   position: relative;
-  top: 2rem;
   margin: auto;
-  border-radius: 40px;
-  width: 90%;
+  width: 100%;
   height: 500px; 
   object-fit: cover; 
   display: block;
@@ -341,10 +339,9 @@ body {
 
 .about-us-section .about-image-wrapper {
   position: relative;
-  width: 95%;
+  width: 100%;
   height: 400px;
   margin: 2rem auto;
-  border-radius: 40px;
   overflow: hidden;
 }
 
@@ -355,11 +352,156 @@ body {
   transform: translate(-50%, -50%);
   margin: 0;
   color: white;
-  font-family: "Raleway", sans-serif;
-  font-size: 2.5rem;
+  font-family: "Lexend Peta", sans-serif;
+  font-size: 3rem;
   font-weight: bold;
   text-align: center;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.about-image-wrapper .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.about-description {
+  position: relative;
+  top: 3rem;
+  max-width: 900px;
+  margin: 3rem auto;
+  text-align: center;
+  color: #fff;
+  padding: 0 1.5rem;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+.about-intro {
+  font-size: 1.8rem;
+  font-family: "IM Fell French Canon SC", serif;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.about-intro i {
+  margin-right: 0.5rem;
+  color: #ffcc00;
+}
+
+.about-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  .book-icon{
+    margin-right: 0.5rem;
+    height: 10rem;
+    width: 10rem;
+  }
+  .register-icon{
+    margin-right: 0.5rem;
+    height: 10rem;
+    width: 10rem;
+  }
+  .notif-icon{
+    margin-right: 0.5rem;
+    height: 10rem;
+    width: 10rem;
+  }
+}
+
+.feature {
+  flex: 1 1 200px;
+  max-width: 220px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+  .feature-fonts{
+    font-family: "Raleway", sans-serif;
+  }
+}
+
+.feature:hover {
+  transform: scale(1.05);
+}
+
+.feature i {
+  font-size: 2rem;
+  font-family: "Raleway", sans-serif;
+  margin-bottom: 0.5rem;
+  color: #ffcc00;
+}
+
+.feature p {
+  font-size: 1rem;
+}
+
+.admin-features i{
+  margin-right: 0.5rem;
+  color: #ffcc00;
+}
+.admin-section {
+  max-width: 1000px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  color: #fff;
+  text-align: center;
+}
+
+.admin-heading {
+  font-size: 1.8rem;
+  font-family: "IM Fell French Canon SC", serif;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.admin-heading i {
+  margin-right: 0.5rem;
+}
+
+
+.admin-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.admin-feature {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-width: 280px;
+  flex: 1 1 250px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.admin-feature:hover {
+  transform: scale(1.05);
+}
+
+.admin-feature i {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #ffcc00;
+}
+
+.admin-feature h4 {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.admin-feature p {
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .testi-section{
