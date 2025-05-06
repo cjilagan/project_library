@@ -139,46 +139,62 @@
   </section>
   
 
-<section id="testimonials" class="testimonials-section">
-    <div class="testimonials-main">
+  <section id="testimonials" class="testimonials-section">
+    <h2 class="section-title">Testimonials</h2>
+    <div class="testi-description">
+        <p class="testi-description-sec">Hear what students and users have to say about their experience with Library Hub. 
+                                         From reliability to ease of access, these voices reflect the value and impact of 
+                                         our system on everyday academic life.</p>
     </div>
-    <section class="testimonials-section">
-        <h2 class="section-title">Testimonials</h2>
-        <div class="section-content">
-            <div class="slider-container swiper">
-                <div class="slider-wrapper">
-                    <ul class="testimonials-list swiper-slide">
-                        <li class="testimonials swiper-slide">                
-                            <img src="{{url_for('static', filename='images/Rodnny.jpg.JPG')}}"alt="User" class="user-image">                    
-                            <h3 class="name">Rodnny Jelvin P. Morales</h3>
-                            <i class="feedback">A boy from BSCPE - 2A Mabait,maasahan,masipag,malakas at marami pang iba.Kaya san ka pa dito ka na kay roddny!!</i>
-                        </li>
-                        <li class="testimonials swiper-slide">
-                            <img src="{{url_for('static', filename='images/Rodnny.jpg.JPG')}}"alt="User" class="user-image">
-                            <h3 class="name">Christian Jherard Ilagan</h3>
-                            <i class="feedback">A boy from BSCPE - 2A</i>
-                        </li>
-                        <li class="testimonials swiper-slide">
-                            <img src="{{url_for('static', filename='images/Rodnny.jpg.JPG')}}"alt="User" class="user-image">
-                            <h3 class="name">Ijah Howell Crisostomo</h3>
-                            <i class="feedback">A boy from BSCPE - 2A</i>
-                        </li>
-                    </ul>
-                    
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>                  
+    
+    <div class="section-content">
+        <div class="slider-container swiper">
+            <h2 class="description-creators-title">About Creators</h2>
+            <div class="testi-creators-desc">
+                <div class="creators-text">
+                    <p class="description-creators">
+                        Library Hub was developed by passionate Computer Engineering students 
+                        from BSCpE - 2A. This project showcases their dedication to building 
+                        accessible, efficient, and user-friendly digital solutions for the academic 
+                        community. With teamwork, innovation, and technical skill, they brought 
+                        Library Hub to life for the benefit of students and educators alike.
+                    </p>
+                </div>
+                <img src="{{ url_for('static', filename='images/libraryhub-home.png') }}" alt="Home" class="libhub-image">
+            </div>
+            
+            <div class="swiper-wrapper">
+                <div class="swiper-slide testimonials">                
+                    <img src="{{ url_for('static', filename='images/Rodnny.jpg.JPG') }}" alt="User" class="user-image">                    
+                    <h3 class="name">Rodnny Jelvin P. Morales</h3>
+                    <i class="feedback">
+                        A boy from BSCPE - 2A. Mabait, maasahan, masipag, malakas at marami pang iba. Kaya san ka pa? Dito ka na kay Rodnny!!
+                    </i>
+                </div>
+
+                <div class="swiper-slide testimonials">
+                    <img src="{{ url_for('static', filename='images/Rodnny.jpg.JPG') }}" alt="User" class="user-image">
+                    <h3 class="name">Christian Jherard Ilagan</h3>
+                    <i class="feedback">A boy from BSCPE - 2A</i>
+                </div>
+
+                <div class="swiper-slide testimonials">
+                    <img src="{{ url_for('static', filename='images/Rodnny.jpg.JPG') }}" alt="User" class="user-image">
+                    <h3 class="name">Ijah Howell Crisostomo</h3>
+                    <i class="feedback">A boy from BSCPE - 2A</i>
                 </div>
             </div>
+
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>                  
         </div>
-    </section>
+    </div>
 </section>
 
-<!--Swiper Script-->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<!--Custom script-->
-<script src="function.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
     const logo = document.querySelector(".main-logo");
     document.getElementById("homeBtn").addEventListener("click", function(e) {
@@ -223,5 +239,17 @@
 
         faders.forEach(fader => observer.observe(fader));
         });
+
+const swiper = new Swiper('.slider-container', {
+  loop: true,
+  pagination: {
+    el: '.swiper-pagination',
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+});
+
 </script>
 {% endblock %}

@@ -330,6 +330,7 @@ body {
 
 .about-us-section .book-shelves{
   position: relative;
+  bottom: 50px;
   margin: auto;
   width: 100%;
   height: 500px; 
@@ -526,11 +527,203 @@ body {
   line-height: 1.5;
 }
 
-.testi-section{
+.testimonials-section {
   background-color: #9c4105;
   background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
-  height: 150vh;
+  padding: 50px 0 100px;
+  max-height: 300vh;
+  overflow: visible;
 }
+
+.testi-description{
+  margin: auto;
+  display: flex;
+  font-size: 1.5rem;
+  font-family: "Raleway", sans-serif;
+  padding: 50px;
+  margin-bottom: 6rem;
+  color: white;
+}
+
+.description-creators-title {
+  font-size: 2.5rem;
+  font-family: "IM Fell French Canon SC", serif;
+  text-align: center;
+  margin-top: 10rem;
+  margin-bottom: 0rem;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+.testi-creators-desc {
+  padding-top: 20px;
+  color: white;
+  display: flex;
+  align-items:center;
+  min-height: 300px;
+  min-width: 90%;
+  justify-content: space-between;
+  gap: 50px;
+  margin-bottom: 60px;
+
+  .creators-text {
+    min-width: 60%;
+    position: relative;
+    margin: 0 auto 0 0;
+  }
+
+  .description-creators {
+    font-size: 1.1rem;
+    font-family: "Raleway", sans-serif;
+    text-align: left;
+    line-height: 1.8;
+    color: #f0f0f0;
+  }
+
+  .libhub-image {
+    flex: 1 1 30%;
+    max-width: 450px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    object-fit: cover;
+  }
+  
+}
+
+.section-title{
+  font-family: "IM Fell French Canon SC", serif;
+  font-size: 2.3rem;
+  color: white;
+}
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  text-align: center;
+  min-height: 200px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.testimonials-section .testimonials {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  gap: 20px;
+  list-style: none;
+  height: 100%;
+  width: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.testimonials-section .testimonials:hover {
+  transform: scale(1.03);
+}
+
+.testimonials-section .testimonials .user-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 30px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.testimonials-section .testimonials .name {
+  color: white;
+  margin-bottom: 16px;
+  font-size: medium;
+}
+.testimonials-section .testimonials .feedback {
+  line-height: 25px;
+  color: white;   
+}
+
+.testimonials-section .swiper-pagination-bullet {
+  width: 20px;
+  height: 15px;
+  opacity: 1;
+  background: var(--secondary-color);
+}
+
+.testimonials-section .swiper-slide-button:hover {
+  color: var(--secondary-color);
+  transition: 0.3s ease;
+}
+
+.testimonials-section .swiper-slide:hover {
+  color: white;
+}
+
+.slider-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.slider-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.slider-container.swiper {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.swiper-wrapper {
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 400px; 
+  overflow: visible; 
+}
+
+.slider-container,
+.swiper-wrapper,
+.swiper-slide {
+  overflow: visible;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: white; 
+  position: absolute;
+  font-size: 18px;
+  width: 44px;
+  height: 44px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  top: 80%;
+  transform: translateY(-50%);
+  transition: background 0.3s ease;
+  z-index: 10;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 
 .nav-title {
   margin: 0;
@@ -2374,53 +2567,4 @@ form {
   
   .return-btn:hover {
     background-color: #572e00;
-  }
-
-  .testimonials-section {
-    padding: 50px 0 100px;
-  }
-  
-  .testimonials-section .testimonials {
-    display: flex;
-    padding: 35px;
-    text-align: center;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 40px;
-    justify-content: center;
-    list-style: none;
-    flex-wrap: wrap;
-  }
-  
-
-  .testimonials-section .testimonials .user-image {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-    margin-bottom: 50px;
-    border-radius: 50%;
-  }
-
-  .testimonials-section .testimonials .name {
-    margin-bottom: 16px;
-    font-size: medium;
-  }
-  .testimonials-section .testimonials .feedback {
-    line-height: 25px;   
-  }
-
-  .testimonials-section .swiper-pagination-bullet {
-    width: 15px;
-    height: 15px;
-    opacity: 1;
-    background: var(--secondary-color);
-  }
-
-  .testimonials-section .swiper-slide-button:hover {
-    color: var(--secondary-color);
-    transition: 0.3s ease;
-  }
-
-  .testimonials-section .swiper-slide:hover {
-    color: var(--primary-color);
   }
