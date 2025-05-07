@@ -2,12 +2,14 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="logo-container">
-            <a href="{{ url_for('auth.login')}}">
-                <img src="{{ url_for('static', filename='images/Library.png') }}" alt="Library Logo" class="logo-img"> 
-            </a>
-        </div>
+    <div class="logo-container">
+        <a href="{{ url_for('auth.login')}}">
+            <img src="{{ url_for('static', filename='images/Library.png') }}" alt="Library Logo" class="logo-img"> 
+        </a>
+    </div>
+
+    <div class="container">       
+        
         <h1>Member Signup</h1>
         <form method="POST">
             <div class="input-box">
@@ -31,6 +33,7 @@
         </form>
         <div class="text-center mt-3">
             <p>Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a></p>
+        </div>
         </div>
     </div>
 {% endblock %}

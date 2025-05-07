@@ -969,11 +969,13 @@ form {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    flex-wrap: wrap;
 }
 
 .input-box .details {
     width: 160px;
     margin-right: 10px;
+    margin-bottom: 8px;
     font-weight: 600;
     color: #ffffff;
     text-align: right;
@@ -981,16 +983,23 @@ form {
 
 .input-box input {
     flex: 1;
+    width: 100%;
+    min-width: 0;
     border-radius: 6px;
     border: 1px solid #ced4da;
     padding: 10px 12px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
 }
 
 .input-box input:focus {
     border-color: #80bdff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
     outline: none;
+}
+
+.btn {
+  margin-top: 20px;
 }
 
 .btn-primary {
@@ -1006,6 +1015,11 @@ form {
 .btn-primary:hover {
     background-color: #0056b3;
     transform: translateY(-1px);
+}
+
+.text-center {
+  text-align: center;
+  margin-top: 20px;
 }
 
 .text-center p {
@@ -2325,6 +2339,7 @@ form {
   margin: 0 auto;
 }
 
+
 .table-member table {
   margin: auto;
   width: 50%;
@@ -2593,7 +2608,7 @@ form {
   background-image: url("/static/images/footer-bg.png"); 
   background-size: 100%; 
   background-position: center;
-  background-repeat:no-repeat;
+  background-repeat: repeat; 
   color: white;
   padding: 30px 20px;
   font-family: 'Georgia', serif;
@@ -2663,6 +2678,25 @@ form {
 }
 
 @media (max-width: 480px) {
+  .container, .container_mt-5{
+    position: relative;
+    top: 65px;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+    padding: 20px;
+    max-width: 90%;
+    box-sizing: border-box;
+  }
+
+  .logo-img {
+      max-width: 30%;
+      align-items: center;
+      position: relative;
+      bottom: 1rem;
+      z-index: 1000;
+  }
+
   .header1 {
       margin-top: 80px;
       font-size: 24px;
@@ -2689,24 +2723,85 @@ form {
   
 }
 
-@media (max-width: 480px) {
-  .logo-img {
-      max-width: 40%;
-      align-items: center;
-      position: relative;
-      right: 5rem;
-      bottom: 1rem;
-  }
-}
-
 @media (min-width: 481px) and (max-width: 768px) {
   .logo-img {
-      max-width: 50%;
-      position: relative;
-      right: 3rem;
-      bottom: 1rem;
+    position: relative;
+    max-width: 100px; 
+    height: auto;
+    display: block; 
+    position: static; 
+    z-index: 1000;
   }
+
+  h1 {
+    font-size: 1.4rem; 
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .container {
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+    padding: 20px;
+    max-width: 80%;
+    box-sizing: border-box;
+  }
+
+  .input-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-box .details {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  .input-box input {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .container_mt-5 {
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+    padding: 20px;
+    max-width: 80%;
+    box-sizing: border-box;
+  }
+
+  .admin_signup h2 {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .form-control {
+    font-size: 1rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .text-muted {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .alert {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
 }
+
 
 @media (min-width: 769px) and (max-width: 1500px) {
   .logo-img {
@@ -2714,5 +2809,32 @@ form {
       position: relative;
       right: 3rem;
       bottom: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .input-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-box .details {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  .logo-container {
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .container {
+    margin: 40px 10px;
+    padding: 15px;
   }
 }
