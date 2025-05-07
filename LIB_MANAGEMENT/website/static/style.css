@@ -2577,22 +2577,31 @@ form {
 .page-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
 .content-wrap {
   flex: 1;
 }
-
+.footer-index{
+  background-color: #9c4105;
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+}
 .site-footer {
-  background-color: #743b21;
+  background-image: url("/static/images/footer-bg.png"); 
+  background-size: 100%; 
+  background-position: center;
+  background-repeat: repeat; 
   color: white;
   padding: 30px 20px;
   font-family: 'Georgia', serif;
-  border-top: 2px solid white;
+  position: relative;
+  z-index: 1;
+  min-height: 320px;
 }
 
 .footer-container {
+  position: relative;
+  top: 7rem;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
