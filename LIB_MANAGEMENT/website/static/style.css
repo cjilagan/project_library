@@ -2319,7 +2319,10 @@ form {
 }
 
 .logo-img {
-  height: 12rem; /* adjust the size if you want */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .table-member table {
@@ -2590,7 +2593,7 @@ form {
   background-image: url("/static/images/footer-bg.png"); 
   background-size: 100%; 
   background-position: center;
-  background-repeat: repeat; 
+  background-repeat:no-repeat;
   color: white;
   padding: 30px 20px;
   font-family: 'Georgia', serif;
@@ -2641,4 +2644,75 @@ form {
 
 .contact a:hover {
   color: #ddd;
+}
+
+@media (max-width: 768px) {
+  .header1 {
+      margin-top: 100px;
+      font-size: 28px;
+      padding: 10px;
+  }
+
+  .login-box1 {
+      padding: 20px;
+  }
+
+  .login-box1 h1 {
+      font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header1 {
+      margin-top: 80px;
+      font-size: 24px;
+  }
+
+  .right-container1 {
+      font-size: 18px;
+      padding: 0 10px;
+  }
+
+  .login-box1 {
+      padding: 15px;
+  }
+
+  .login-box1 input,
+  .login-box1 button {
+      font-size: 14px;
+      padding: 10px;
+  }
+
+  .login-box1 h1 {
+      font-size: 20px;
+  }
+  
+}
+
+@media (max-width: 480px) {
+  .logo-img {
+      max-width: 40%;
+      align-items: center;
+      position: relative;
+      right: 5rem;
+      bottom: 1rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .logo-img {
+      max-width: 50%;
+      position: relative;
+      right: 3rem;
+      bottom: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1500px) {
+  .logo-img {
+      max-width: 60%;
+      position: relative;
+      right: 3rem;
+      bottom: 1rem;
+  }
 }

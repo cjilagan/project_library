@@ -7,5 +7,5 @@ with app.app_context():
         print(rule)
 
 if __name__ == '__main__':  
-    #app.run(host='0.0.0.0', port=5000, debug=True)
-    app.run(debug=True)
+    app.run(host='192.168.1.24', port=5000, debug=True)
+    #app.run(debug=True)
