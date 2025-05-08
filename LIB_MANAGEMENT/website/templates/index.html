@@ -8,7 +8,11 @@
         <img src="{{ url_for('static', filename='images/Library.png') }}" alt="logo" class="main-logo">
         <h1 class="nav-title">Library Hub</h1>
         </a>
+        <button class="hamburger" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </button>
     </div>
+    
     <div class="nav-right">
         <a href="#" id="testiBtn" class="circle-button" title="testimonials">Testimonials</a>
         <a href="#" id="aboutBtn" class="circle-button" title="About">About</a>
@@ -169,7 +173,9 @@
                     <img src="{{ url_for('static', filename='images/Rodnny.jpg.JPG') }}" alt="User" class="user-image">                    
                     <h3 class="name">Rodnny Jelvin P. Morales</h3>
                     <i class="feedback">
-                        A boy from BSCPE - 2A. Mabait, maasahan, masipag, malakas at marami pang iba. Kaya san ka pa? Dito ka na kay Rodnny!!
+                        A serious boy from BSCPE-2A, he is passionate about computers and always eager to learn new technologies. 
+                        Known for his teamwork and problem-solving skills, he actively contributes to group projects and class 
+                        discussions.
                     </i>
                 </div>
 
@@ -296,6 +302,12 @@ const swiper = new Swiper('.slider-container', {
     prevEl: '.swiper-button-prev',
   },
 });
+    const hamburger = document.getElementById('hamburgerBtn');
+        const navRight = document.querySelector('.nav-right');
+
+    hamburger.addEventListener('click', () => {
+        navRight.classList.toggle('show');
+    });
 
 </script>
 {% endblock %}
