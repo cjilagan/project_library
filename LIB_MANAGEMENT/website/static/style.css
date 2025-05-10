@@ -2824,6 +2824,21 @@ form {
     height: 8rem;
     border-width: 2px;
   }
+
+  .testi-creators-desc {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .creators-text {
+    min-width: 100%;
+    margin: 0 auto;
+  }
+
+  .libhub-image {
+    max-width: 90%;
+    margin-top: 20px;
+  }
   
 }
 
@@ -2973,6 +2988,21 @@ form {
     width: 35rem;
     height: 15rem;
     border-width: 3px;
+  }
+
+  .testi-creators-desc {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .creators-text {
+    min-width: 100%;
+    margin: 0 auto;
+  }
+
+  .libhub-image {
+    max-width: 80%;
+    margin-top: 20px;
   }
 
 }
